@@ -31,6 +31,8 @@ O problema: rotas planejadas no *feeling*, sem critério geográfico — gerando
 > 🏆 **Melhor resultado:** K-Means + 2-Opt — redução de **57,6%** na distância com territórios geográficos coesos  
 > ⚡ **Melhor heurística pura:** 2-Opt — 22% de saving com **break-even no Mês 6** e ROI de R$ 5.373 em 12 meses
 
+![Dashboard Executivo](https://github.com/RoneyGalan/otimizacao-rotas/raw/main/images/06_dashboard_executivo.png)
+
 ---
 
 ## 🧠 Algoritmos Implementados
@@ -49,6 +51,36 @@ Garante que farmácias de **alta prioridade** sejam visitadas primeiro, independ
 
 ### 5. K-Means + 2-Opt *(territorialização)*
 Agrupa farmácias geograficamente com K-Means antes de atribuir representantes, criando **territórios coesos** sem cruzamento de rotas entre profissionais. Aplica 2-Opt dentro de cada cluster. Resultado: 57,6% de saving — o maior ganho do projeto.
+
+---
+
+## 🗺️ Clusterização Geográfica
+
+![Clusters](https://github.com/RoneyGalan/otimizacao-rotas/raw/main/images/01_clusters.png)
+
+---
+
+## 📈 Comparativo de Algoritmos
+
+![Comparativo](https://github.com/RoneyGalan/otimizacao-rotas/raw/main/images/02_comparativo_algoritmos.png)
+
+---
+
+## 📅 Planejamento Semanal
+
+![Planejamento Semanal](https://github.com/RoneyGalan/otimizacao-rotas/raw/main/images/03_planejamento_semanal.png)
+
+---
+
+## 🌍 Análise de Cobertura Geográfica
+
+![Heatmap Cobertura](https://github.com/RoneyGalan/otimizacao-rotas/raw/main/images/04_heatmap_cobertura.png)
+
+---
+
+## 💰 Projeção de ROI — 12 Meses
+
+![ROI Projeção](https://github.com/RoneyGalan/otimizacao-rotas/raw/main/images/05_roi_projecao.png)
 
 ---
 
@@ -107,14 +139,9 @@ Python 3.11
 ## ▶️ Como Executar
 
 ```bash
-# Clone o repositório
 git clone https://github.com/RoneyGalan/otimizacao-rotas.git
 cd otimizacao-rotas
-
-# Instale as dependências
 pip install pandas numpy matplotlib seaborn scikit-learn folium
-
-# Abra o notebook
 jupyter notebook otimizacao_rotas_completo.ipynb
 ```
 
@@ -135,4 +162,8 @@ Execute as células em ordem. Os gráficos serão salvos em `images/` e os mapas
 
 **Roney Galan**  
 Data Analyst · MBA Big Data & Analytics — FGV  
-[github.com/RoneyGalan](https://github.com/RoneyGalan) · [LinkedIn](https://www.linkedin.com/in/roneygalan)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-roney--wesley--galan-blue?logo=linkedin)](https://linkedin.com/in/roney-wesley-galan-ba7aa194) [![GitHub](https://img.shields.io/badge/GitHub-RoneyGalan-black?logo=github)](https://github.com/RoneyGalan)
+
+---
+
+> *"Sem critério geográfico, toda rota é uma aposta. Com algoritmos, é uma estratégia."*
