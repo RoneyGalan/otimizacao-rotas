@@ -1,0 +1,2229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_d98c472cb082d1b4c40289827ae62ccb {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position:fixed;bottom:30px;left:30px;z-index:1000;
+                background:white;padding:15px;border-radius:8px;
+                border:2px solid #ccc;font-size:13px;">
+        <b>Rotas ANTES da Otimização</b><br><br>
+        🔴 Alta prioridade<br>🟠 Média prioridade<br>
+        🔵 Baixa prioridade<br>🏠 Base do representante
+    </div>
+    
+            <div class="folium-map" id="map_d98c472cb082d1b4c40289827ae62ccb" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_d98c472cb082d1b4c40289827ae62ccb = L.map(
+                "map_d98c472cb082d1b4c40289827ae62ccb",
+                {
+                    center: [-23.5505, -46.6333],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8c35b141b2739544a62327150bcceac1 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8c35b141b2739544a62327150bcceac1.addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var circle_marker_8222b802bd45ce166e598013803d0bf2 = L.circleMarker(
+                [-23.573845988115263, -46.610928569359004],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_f8d49a97eff607d17d9897ceea4b1a07 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_b5a5aade61826945edefecc54b857df1 = $(`<div id="html_b5a5aade61826945edefecc54b857df1" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 1</b><br>Prioridade: Alta<br>Pedidos/mês: 126<br>Faturamento: R$ 538,272</div>`)[0];
+                popup_f8d49a97eff607d17d9897ceea4b1a07.setContent(html_b5a5aade61826945edefecc54b857df1);
+            
+        
+
+        circle_marker_8222b802bd45ce166e598013803d0bf2.bindPopup(popup_f8d49a97eff607d17d9897ceea4b1a07)
+        ;
+
+        
+    
+    
+            circle_marker_8222b802bd45ce166e598013803d0bf2.bindTooltip(
+                `<div>
+                     FM001
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f3890da51a820d19ef80e8a87f25b3fd = L.circleMarker(
+                [-23.53051498420535, -46.58201672471464],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_555581d26802cd4a9305cd135c05cdf3 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_4cc891951ae78fc63cc0f1b775887e5b = $(`<div id="html_4cc891951ae78fc63cc0f1b775887e5b" style="width: 100.0%; height: 100.0%;"><b>Farmácia Tatuapé 2</b><br>Prioridade: Alta<br>Pedidos/mês: 94<br>Faturamento: R$ 370,736</div>`)[0];
+                popup_555581d26802cd4a9305cd135c05cdf3.setContent(html_4cc891951ae78fc63cc0f1b775887e5b);
+            
+        
+
+        circle_marker_f3890da51a820d19ef80e8a87f25b3fd.bindPopup(popup_555581d26802cd4a9305cd135c05cdf3)
+        ;
+
+        
+    
+    
+            circle_marker_f3890da51a820d19ef80e8a87f25b3fd.bindTooltip(
+                `<div>
+                     FM002
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_abb400c0a64cfd3bce85aff5e45dfd8a = L.circleMarker(
+                [-23.58588849882568, -46.6666927422204],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_9292b6b64843cea671f544747c90f813 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_ee4bae56218662b9987a48ee7787db4e = $(`<div id="html_ee4bae56218662b9987a48ee7787db4e" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 3</b><br>Prioridade: Alta<br>Pedidos/mês: 169<br>Faturamento: R$ 214,461</div>`)[0];
+                popup_9292b6b64843cea671f544747c90f813.setContent(html_ee4bae56218662b9987a48ee7787db4e);
+            
+        
+
+        circle_marker_abb400c0a64cfd3bce85aff5e45dfd8a.bindPopup(popup_9292b6b64843cea671f544747c90f813)
+        ;
+
+        
+    
+    
+            circle_marker_abb400c0a64cfd3bce85aff5e45dfd8a.bindTooltip(
+                `<div>
+                     FM003
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_922d6970ea21202041a8b482f580b023 = L.circleMarker(
+                [-23.539100122773316, -46.612144729098425],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_243c2f34033a543c70d9565b23caae31 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_5dbc08343bfe6bf5a1eeb72bbbfd5c2b = $(`<div id="html_5dbc08343bfe6bf5a1eeb72bbbfd5c2b" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 4</b><br>Prioridade: Baixa<br>Pedidos/mês: 149<br>Faturamento: R$ 250,916</div>`)[0];
+                popup_243c2f34033a543c70d9565b23caae31.setContent(html_5dbc08343bfe6bf5a1eeb72bbbfd5c2b);
+            
+        
+
+        circle_marker_922d6970ea21202041a8b482f580b023.bindPopup(popup_243c2f34033a543c70d9565b23caae31)
+        ;
+
+        
+    
+    
+            circle_marker_922d6970ea21202041a8b482f580b023.bindTooltip(
+                `<div>
+                     FM004
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9933696750b681baf1a8d67245890be2 = L.circleMarker(
+                [-23.517075775704043, -46.62362435683678],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_533e2fe6214e2284b6545166df5a2c6c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_8f958efcced72c12f46c2dd54d47a259 = $(`<div id="html_8f958efcced72c12f46c2dd54d47a259" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santana 5</b><br>Prioridade: Alta<br>Pedidos/mês: 108<br>Faturamento: R$ 105,192</div>`)[0];
+                popup_533e2fe6214e2284b6545166df5a2c6c.setContent(html_8f958efcced72c12f46c2dd54d47a259);
+            
+        
+
+        circle_marker_9933696750b681baf1a8d67245890be2.bindPopup(popup_533e2fe6214e2284b6545166df5a2c6c)
+        ;
+
+        
+    
+    
+            circle_marker_9933696750b681baf1a8d67245890be2.bindTooltip(
+                `<div>
+                     FM005
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_87778516507fa5db6db1149825949e3d = L.circleMarker(
+                [-23.541814710527763, -46.6379506139348],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_ff82daa8196aa3af97ff5162cfea08ae = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_a72f32c45cc2c9da73be4d5523530717 = $(`<div id="html_a72f32c45cc2c9da73be4d5523530717" style="width: 100.0%; height: 100.0%;"><b>Farmácia Mooca 6</b><br>Prioridade: Media<br>Pedidos/mês: 34<br>Faturamento: R$ 23,426</div>`)[0];
+                popup_ff82daa8196aa3af97ff5162cfea08ae.setContent(html_a72f32c45cc2c9da73be4d5523530717);
+            
+        
+
+        circle_marker_87778516507fa5db6db1149825949e3d.bindPopup(popup_ff82daa8196aa3af97ff5162cfea08ae)
+        ;
+
+        
+    
+    
+            circle_marker_87778516507fa5db6db1149825949e3d.bindTooltip(
+                `<div>
+                     FM006
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db5f175a0ad01a00932aa794e802c1e5 = L.circleMarker(
+                [-23.59143935654672, -46.62146139906669],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_7019da00b919c70123040fbd17f5cad2 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_bfbdd628e7342c16f4ad53ce6b46caa4 = $(`<div id="html_bfbdd628e7342c16f4ad53ce6b46caa4" style="width: 100.0%; height: 100.0%;"><b>Farmácia Centro 7</b><br>Prioridade: Alta<br>Pedidos/mês: 127<br>Faturamento: R$ 224,409</div>`)[0];
+                popup_7019da00b919c70123040fbd17f5cad2.setContent(html_bfbdd628e7342c16f4ad53ce6b46caa4);
+            
+        
+
+        circle_marker_db5f175a0ad01a00932aa794e802c1e5.bindPopup(popup_7019da00b919c70123040fbd17f5cad2)
+        ;
+
+        
+    
+    
+            circle_marker_db5f175a0ad01a00932aa794e802c1e5.bindTooltip(
+                `<div>
+                     FM007
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_99758964f9a416cef5bd0f4f08005c7a = L.circleMarker(
+                [-23.552058543113795, -46.701354958728],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_c23ccf0954c88033d4e41b187c42b748 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_30d3945c1b73434bec6c8c815f1b3288 = $(`<div id="html_30d3945c1b73434bec6c8c815f1b3288" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 8</b><br>Prioridade: Alta<br>Pedidos/mês: 70<br>Faturamento: R$ 80,220</div>`)[0];
+                popup_c23ccf0954c88033d4e41b187c42b748.setContent(html_30d3945c1b73434bec6c8c815f1b3288);
+            
+        
+
+        circle_marker_99758964f9a416cef5bd0f4f08005c7a.bindPopup(popup_c23ccf0954c88033d4e41b187c42b748)
+        ;
+
+        
+    
+    
+            circle_marker_99758964f9a416cef5bd0f4f08005c7a.bindTooltip(
+                `<div>
+                     FM008
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ceb3f20ccef455a94605ea45537d80f3 = L.circleMarker(
+                [-23.62894758763127, -46.73099484070147],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_b0435111c507733675864298d339b31d = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7e5c458891f11dea9ba21854a6bd6a3e = $(`<div id="html_7e5c458891f11dea9ba21854a6bd6a3e" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 9</b><br>Prioridade: Baixa<br>Pedidos/mês: 151<br>Faturamento: R$ 166,100</div>`)[0];
+                popup_b0435111c507733675864298d339b31d.setContent(html_7e5c458891f11dea9ba21854a6bd6a3e);
+            
+        
+
+        circle_marker_ceb3f20ccef455a94605ea45537d80f3.bindPopup(popup_b0435111c507733675864298d339b31d)
+        ;
+
+        
+    
+    
+            circle_marker_ceb3f20ccef455a94605ea45537d80f3.bindTooltip(
+                `<div>
+                     FM009
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4a10e90e41a50368351f09acd7ac8b03 = L.circleMarker(
+                [-23.506436796692544, -46.57106026518836],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_f2d6e39eee575f68ca729bca58e3f5c2 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7c87b55d0448b554d834b90316f05581 = $(`<div id="html_7c87b55d0448b554d834b90316f05581" style="width: 100.0%; height: 100.0%;"><b>Farmácia Mooca 10</b><br>Prioridade: Alta<br>Pedidos/mês: 28<br>Faturamento: R$ 87,136</div>`)[0];
+                popup_f2d6e39eee575f68ca729bca58e3f5c2.setContent(html_7c87b55d0448b554d834b90316f05581);
+            
+        
+
+        circle_marker_4a10e90e41a50368351f09acd7ac8b03.bindPopup(popup_f2d6e39eee575f68ca729bca58e3f5c2)
+        ;
+
+        
+    
+    
+            circle_marker_4a10e90e41a50368351f09acd7ac8b03.bindTooltip(
+                `<div>
+                     FM010
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e204843e7f5bc5e8bf09377aef0a0144 = L.circleMarker(
+                [-23.524410617437784, -46.6519974533974],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_bbff68e006bc9a5d78aa729b37fd5fc1 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6ff6d1291f77c293e5a6a5f070238cf7 = $(`<div id="html_6ff6d1291f77c293e5a6a5f070238cf7" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santana 11</b><br>Prioridade: Alta<br>Pedidos/mês: 191<br>Faturamento: R$ 583,696</div>`)[0];
+                popup_bbff68e006bc9a5d78aa729b37fd5fc1.setContent(html_6ff6d1291f77c293e5a6a5f070238cf7);
+            
+        
+
+        circle_marker_e204843e7f5bc5e8bf09377aef0a0144.bindPopup(popup_bbff68e006bc9a5d78aa729b37fd5fc1)
+        ;
+
+        
+    
+    
+            circle_marker_e204843e7f5bc5e8bf09377aef0a0144.bindTooltip(
+                `<div>
+                     FM011
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_af93778aaab8da88988e56dffe251c2b = L.circleMarker(
+                [-23.46418050882638, -46.658763534649225],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_51966be446e1b66cbcf91498effc5f77 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_369eb18b44c86137850e5ba21ec80a74 = $(`<div id="html_369eb18b44c86137850e5ba21ec80a74" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santana 12</b><br>Prioridade: Media<br>Pedidos/mês: 100<br>Faturamento: R$ 245,500</div>`)[0];
+                popup_51966be446e1b66cbcf91498effc5f77.setContent(html_369eb18b44c86137850e5ba21ec80a74);
+            
+        
+
+        circle_marker_af93778aaab8da88988e56dffe251c2b.bindPopup(popup_51966be446e1b66cbcf91498effc5f77)
+        ;
+
+        
+    
+    
+            circle_marker_af93778aaab8da88988e56dffe251c2b.bindTooltip(
+                `<div>
+                     FM012
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8d9f386b2fd4af13034b7ef5f223c9ed = L.circleMarker(
+                [-23.627776391221193, -46.661963858968235],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_4e92c3b256d9ff5943756090b60db4f9 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_55022d16208371826a7480411cb7b0d8 = $(`<div id="html_55022d16208371826a7480411cb7b0d8" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 13</b><br>Prioridade: Media<br>Pedidos/mês: 153<br>Faturamento: R$ 476,289</div>`)[0];
+                popup_4e92c3b256d9ff5943756090b60db4f9.setContent(html_55022d16208371826a7480411cb7b0d8);
+            
+        
+
+        circle_marker_8d9f386b2fd4af13034b7ef5f223c9ed.bindPopup(popup_4e92c3b256d9ff5943756090b60db4f9)
+        ;
+
+        
+    
+    
+            circle_marker_8d9f386b2fd4af13034b7ef5f223c9ed.bindTooltip(
+                `<div>
+                     FM013
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4047f162e228e999ce54db83bb8fd502 = L.circleMarker(
+                [-23.548328972065672, -46.63341455444745],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_936c11171b6c97ff45edb9a72f507d8f = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_9d81846640ea30b12a8cd05a8a0308ba = $(`<div id="html_9d81846640ea30b12a8cd05a8a0308ba" style="width: 100.0%; height: 100.0%;"><b>Farmácia Mooca 14</b><br>Prioridade: Media<br>Pedidos/mês: 165<br>Faturamento: R$ 109,065</div>`)[0];
+                popup_936c11171b6c97ff45edb9a72f507d8f.setContent(html_9d81846640ea30b12a8cd05a8a0308ba);
+            
+        
+
+        circle_marker_4047f162e228e999ce54db83bb8fd502.bindPopup(popup_936c11171b6c97ff45edb9a72f507d8f)
+        ;
+
+        
+    
+    
+            circle_marker_4047f162e228e999ce54db83bb8fd502.bindTooltip(
+                `<div>
+                     FM014
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_405511455696cee144d8cb0cd57b0c6c = L.circleMarker(
+                [-23.56098497639982, -46.59063411342062],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_eeb287e0736cff17c80c6fadb51bd462 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_8632da55f3add5775372c7400fdd0191 = $(`<div id="html_8632da55f3add5775372c7400fdd0191" style="width: 100.0%; height: 100.0%;"><b>Farmácia Centro 15</b><br>Prioridade: Alta<br>Pedidos/mês: 114<br>Faturamento: R$ 437,988</div>`)[0];
+                popup_eeb287e0736cff17c80c6fadb51bd462.setContent(html_8632da55f3add5775372c7400fdd0191);
+            
+        
+
+        circle_marker_405511455696cee144d8cb0cd57b0c6c.bindPopup(popup_eeb287e0736cff17c80c6fadb51bd462)
+        ;
+
+        
+    
+    
+            circle_marker_405511455696cee144d8cb0cd57b0c6c.bindTooltip(
+                `<div>
+                     FM015
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_766a6fe08f60cb7f2d7353abc28be8bb = L.circleMarker(
+                [-23.49545074979481, -46.563701713758086],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_3c12d424a7e0416970e4708574f79b3c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_b260d6567a225c6ea710d21ec7a227b4 = $(`<div id="html_b260d6567a225c6ea710d21ec7a227b4" style="width: 100.0%; height: 100.0%;"><b>Farmácia Guarulhos 16</b><br>Prioridade: Media<br>Pedidos/mês: 59<br>Faturamento: R$ 49,383</div>`)[0];
+                popup_3c12d424a7e0416970e4708574f79b3c.setContent(html_b260d6567a225c6ea710d21ec7a227b4);
+            
+        
+
+        circle_marker_766a6fe08f60cb7f2d7353abc28be8bb.bindPopup(popup_3c12d424a7e0416970e4708574f79b3c)
+        ;
+
+        
+    
+    
+            circle_marker_766a6fe08f60cb7f2d7353abc28be8bb.bindTooltip(
+                `<div>
+                     FM016
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_53acb730594261708b74346bfb91c82b = L.circleMarker(
+                [-23.53623078676109, -46.56792488343361],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_d21e016be8d0cee4dd18b3023783e9bb = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_3b6080da219dfecba31733dcee2ad738 = $(`<div id="html_3b6080da219dfecba31733dcee2ad738" style="width: 100.0%; height: 100.0%;"><b>Farmácia Tatuapé 17</b><br>Prioridade: Alta<br>Pedidos/mês: 143<br>Faturamento: R$ 141,856</div>`)[0];
+                popup_d21e016be8d0cee4dd18b3023783e9bb.setContent(html_3b6080da219dfecba31733dcee2ad738);
+            
+        
+
+        circle_marker_53acb730594261708b74346bfb91c82b.bindPopup(popup_d21e016be8d0cee4dd18b3023783e9bb)
+        ;
+
+        
+    
+    
+            circle_marker_53acb730594261708b74346bfb91c82b.bindTooltip(
+                `<div>
+                     FM017
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9a90d5d5ad73ae93daf3431dc61e9865 = L.circleMarker(
+                [-23.631907577502524, -46.657280301924594],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_7e188b278b0756120277cfbee8596772 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_c1825b7a7240ffb4a24f935628fee9b3 = $(`<div id="html_c1825b7a7240ffb4a24f935628fee9b3" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 18</b><br>Prioridade: Media<br>Pedidos/mês: 84<br>Faturamento: R$ 257,712</div>`)[0];
+                popup_7e188b278b0756120277cfbee8596772.setContent(html_c1825b7a7240ffb4a24f935628fee9b3);
+            
+        
+
+        circle_marker_9a90d5d5ad73ae93daf3431dc61e9865.bindPopup(popup_7e188b278b0756120277cfbee8596772)
+        ;
+
+        
+    
+    
+            circle_marker_9a90d5d5ad73ae93daf3431dc61e9865.bindTooltip(
+                `<div>
+                     FM018
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1cf8cf1549c36d3791cfb054c0da0a0c = L.circleMarker(
+                [-23.534075523070335, -46.68612843184658],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_18e507685239d9616f7f92335e6c36a7 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_5fedaa1d0d5cbcc35953c1fc3370ce49 = $(`<div id="html_5fedaa1d0d5cbcc35953c1fc3370ce49" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 19</b><br>Prioridade: Alta<br>Pedidos/mês: 82<br>Faturamento: R$ 73,062</div>`)[0];
+                popup_18e507685239d9616f7f92335e6c36a7.setContent(html_5fedaa1d0d5cbcc35953c1fc3370ce49);
+            
+        
+
+        circle_marker_1cf8cf1549c36d3791cfb054c0da0a0c.bindPopup(popup_18e507685239d9616f7f92335e6c36a7)
+        ;
+
+        
+    
+    
+            circle_marker_1cf8cf1549c36d3791cfb054c0da0a0c.bindTooltip(
+                `<div>
+                     FM019
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7ca0aeed3849c95750162192f70535d2 = L.circleMarker(
+                [-23.4313992831959, -46.5061729653314],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_f8175f9e48e30077e9cb6f680929d065 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_e11917fbee218dfb877d4bf32883ba91 = $(`<div id="html_e11917fbee218dfb877d4bf32883ba91" style="width: 100.0%; height: 100.0%;"><b>Farmácia Guarulhos 20</b><br>Prioridade: Alta<br>Pedidos/mês: 24<br>Faturamento: R$ 97,464</div>`)[0];
+                popup_f8175f9e48e30077e9cb6f680929d065.setContent(html_e11917fbee218dfb877d4bf32883ba91);
+            
+        
+
+        circle_marker_7ca0aeed3849c95750162192f70535d2.bindPopup(popup_f8175f9e48e30077e9cb6f680929d065)
+        ;
+
+        
+    
+    
+            circle_marker_7ca0aeed3849c95750162192f70535d2.bindTooltip(
+                `<div>
+                     FM020
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f408330f44962ce42376d78b1aa8d6cc = L.circleMarker(
+                [-23.677053427145573, -46.56641309404748],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_da5c0d943b4eb25540fccae4522b8e46 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_02897112051f071cf45b28f4b8b7e940 = $(`<div id="html_02897112051f071cf45b28f4b8b7e940" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santo André 21</b><br>Prioridade: Media<br>Pedidos/mês: 154<br>Faturamento: R$ 107,800</div>`)[0];
+                popup_da5c0d943b4eb25540fccae4522b8e46.setContent(html_02897112051f071cf45b28f4b8b7e940);
+            
+        
+
+        circle_marker_f408330f44962ce42376d78b1aa8d6cc.bindPopup(popup_da5c0d943b4eb25540fccae4522b8e46)
+        ;
+
+        
+    
+    
+            circle_marker_f408330f44962ce42376d78b1aa8d6cc.bindTooltip(
+                `<div>
+                     FM021
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_28f3713ae4fe7b790e6f394d576a5465 = L.circleMarker(
+                [-23.540670187317247, -46.61881019751473],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_92201d6c3af79284c0ed7c436b30dfa0 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6e5bb011965cd7fef38156069c05b5ed = $(`<div id="html_6e5bb011965cd7fef38156069c05b5ed" style="width: 100.0%; height: 100.0%;"><b>Farmácia Mooca 22</b><br>Prioridade: Media<br>Pedidos/mês: 67<br>Faturamento: R$ 197,918</div>`)[0];
+                popup_92201d6c3af79284c0ed7c436b30dfa0.setContent(html_6e5bb011965cd7fef38156069c05b5ed);
+            
+        
+
+        circle_marker_28f3713ae4fe7b790e6f394d576a5465.bindPopup(popup_92201d6c3af79284c0ed7c436b30dfa0)
+        ;
+
+        
+    
+    
+            circle_marker_28f3713ae4fe7b790e6f394d576a5465.bindTooltip(
+                `<div>
+                     FM022
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_01fe31b0ddb133420e021e1562ae3ed6 = L.circleMarker(
+                [-23.533615874733638, -46.61670776433825],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_22a3f42d0801bf5142826f0f2347367b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_f4c1d834f237526341cd80f8090257ef = $(`<div id="html_f4c1d834f237526341cd80f8090257ef" style="width: 100.0%; height: 100.0%;"><b>Farmácia Centro 23</b><br>Prioridade: Baixa<br>Pedidos/mês: 191<br>Faturamento: R$ 625,143</div>`)[0];
+                popup_22a3f42d0801bf5142826f0f2347367b.setContent(html_f4c1d834f237526341cd80f8090257ef);
+            
+        
+
+        circle_marker_01fe31b0ddb133420e021e1562ae3ed6.bindPopup(popup_22a3f42d0801bf5142826f0f2347367b)
+        ;
+
+        
+    
+    
+            circle_marker_01fe31b0ddb133420e021e1562ae3ed6.bindTooltip(
+                `<div>
+                     FM023
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aef560171c584076f4b260cfa2923408 = L.circleMarker(
+                [-23.493778725742366, -46.7946785074838],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_13f07c0277a8c8a79f18a409ca8c35fe = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_a643ab86f80319c5a5594995053c2b7c = $(`<div id="html_a643ab86f80319c5a5594995053c2b7c" style="width: 100.0%; height: 100.0%;"><b>Farmácia Osasco 24</b><br>Prioridade: Baixa<br>Pedidos/mês: 120<br>Faturamento: R$ 382,800</div>`)[0];
+                popup_13f07c0277a8c8a79f18a409ca8c35fe.setContent(html_a643ab86f80319c5a5594995053c2b7c);
+            
+        
+
+        circle_marker_aef560171c584076f4b260cfa2923408.bindPopup(popup_13f07c0277a8c8a79f18a409ca8c35fe)
+        ;
+
+        
+    
+    
+            circle_marker_aef560171c584076f4b260cfa2923408.bindTooltip(
+                `<div>
+                     FM024
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_39b411a7e52873173fd2bea8282a8787 = L.circleMarker(
+                [-23.53522149513831, -46.64987228024305],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_bda2defa292b433865ac8e198f2f8b54 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_611ad77ad703676940128fb686c99650 = $(`<div id="html_611ad77ad703676940128fb686c99650" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 25</b><br>Prioridade: Media<br>Pedidos/mês: 161<br>Faturamento: R$ 220,570</div>`)[0];
+                popup_bda2defa292b433865ac8e198f2f8b54.setContent(html_611ad77ad703676940128fb686c99650);
+            
+        
+
+        circle_marker_39b411a7e52873173fd2bea8282a8787.bindPopup(popup_bda2defa292b433865ac8e198f2f8b54)
+        ;
+
+        
+    
+    
+            circle_marker_39b411a7e52873173fd2bea8282a8787.bindTooltip(
+                `<div>
+                     FM025
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c0bed312dd71f212becbc751740f553a = L.circleMarker(
+                [-23.607256641046156, -46.63493371103142],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_28d2231659597a17bc558c1df754060b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_38c2eb30c9b54158a86f4d3571a6c6c3 = $(`<div id="html_38c2eb30c9b54158a86f4d3571a6c6c3" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 26</b><br>Prioridade: Baixa<br>Pedidos/mês: 109<br>Faturamento: R$ 216,256</div>`)[0];
+                popup_28d2231659597a17bc558c1df754060b.setContent(html_38c2eb30c9b54158a86f4d3571a6c6c3);
+            
+        
+
+        circle_marker_c0bed312dd71f212becbc751740f553a.bindPopup(popup_28d2231659597a17bc558c1df754060b)
+        ;
+
+        
+    
+    
+            circle_marker_c0bed312dd71f212becbc751740f553a.bindTooltip(
+                `<div>
+                     FM026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1e3effd10c867264f19f803a812414db = L.circleMarker(
+                [-23.57002807976646, -46.53702364043265],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_046cb7447b7e7c9c47407eafb3001760 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_de1d80e641e0cc286bead02dc753e936 = $(`<div id="html_de1d80e641e0cc286bead02dc753e936" style="width: 100.0%; height: 100.0%;"><b>Farmácia Tatuapé 27</b><br>Prioridade: Baixa<br>Pedidos/mês: 71<br>Faturamento: R$ 333,061</div>`)[0];
+                popup_046cb7447b7e7c9c47407eafb3001760.setContent(html_de1d80e641e0cc286bead02dc753e936);
+            
+        
+
+        circle_marker_1e3effd10c867264f19f803a812414db.bindPopup(popup_046cb7447b7e7c9c47407eafb3001760)
+        ;
+
+        
+    
+    
+            circle_marker_1e3effd10c867264f19f803a812414db.bindTooltip(
+                `<div>
+                     FM027
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0fa41bdaab96595a64371b5ad30d5825 = L.circleMarker(
+                [-23.53344839135739, -46.637966854559416],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_904a1fd2448dc1e43886b33768a481dc = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_100a7797560b7714a43b50bf9862bb87 = $(`<div id="html_100a7797560b7714a43b50bf9862bb87" style="width: 100.0%; height: 100.0%;"><b>Farmácia Mooca 28</b><br>Prioridade: Media<br>Pedidos/mês: 162<br>Faturamento: R$ 606,204</div>`)[0];
+                popup_904a1fd2448dc1e43886b33768a481dc.setContent(html_100a7797560b7714a43b50bf9862bb87);
+            
+        
+
+        circle_marker_0fa41bdaab96595a64371b5ad30d5825.bindPopup(popup_904a1fd2448dc1e43886b33768a481dc)
+        ;
+
+        
+    
+    
+            circle_marker_0fa41bdaab96595a64371b5ad30d5825.bindTooltip(
+                `<div>
+                     FM028
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c18e57f9354acced269942a330bbb07d = L.circleMarker(
+                [-23.582693877526523, -46.5576146429442],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_fb49fa44dbaf6afe0a5c064d86e085a1 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_3feefe935e205978879875e95765afa8 = $(`<div id="html_3feefe935e205978879875e95765afa8" style="width: 100.0%; height: 100.0%;"><b>Farmácia Mooca 29</b><br>Prioridade: Alta<br>Pedidos/mês: 90<br>Faturamento: R$ 199,980</div>`)[0];
+                popup_fb49fa44dbaf6afe0a5c064d86e085a1.setContent(html_3feefe935e205978879875e95765afa8);
+            
+        
+
+        circle_marker_c18e57f9354acced269942a330bbb07d.bindPopup(popup_fb49fa44dbaf6afe0a5c064d86e085a1)
+        ;
+
+        
+    
+    
+            circle_marker_c18e57f9354acced269942a330bbb07d.bindTooltip(
+                `<div>
+                     FM029
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_21129cbc1e383c814e0f4c8ba63bfdd4 = L.circleMarker(
+                [-23.541821506696028, -46.61795321609847],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_e58d0b0633d1d168e68ceeefb094dd5e = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6e41c793b382b7fe350a2c7305a665fa = $(`<div id="html_6e41c793b382b7fe350a2c7305a665fa" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 30</b><br>Prioridade: Alta<br>Pedidos/mês: 189<br>Faturamento: R$ 396,333</div>`)[0];
+                popup_e58d0b0633d1d168e68ceeefb094dd5e.setContent(html_6e41c793b382b7fe350a2c7305a665fa);
+            
+        
+
+        circle_marker_21129cbc1e383c814e0f4c8ba63bfdd4.bindPopup(popup_e58d0b0633d1d168e68ceeefb094dd5e)
+        ;
+
+        
+    
+    
+            circle_marker_21129cbc1e383c814e0f4c8ba63bfdd4.bindTooltip(
+                `<div>
+                     FM030
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_243d1e2f142a388ea9537dcee8b69591 = L.circleMarker(
+                [-23.582659624348956, -46.650353940981226],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_4095f15f53f94bfc12d5d69a880ecf57 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_bd6005dd5713e43f55152d29bca1e0a1 = $(`<div id="html_bd6005dd5713e43f55152d29bca1e0a1" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 31</b><br>Prioridade: Media<br>Pedidos/mês: 47<br>Faturamento: R$ 193,969</div>`)[0];
+                popup_4095f15f53f94bfc12d5d69a880ecf57.setContent(html_bd6005dd5713e43f55152d29bca1e0a1);
+            
+        
+
+        circle_marker_243d1e2f142a388ea9537dcee8b69591.bindPopup(popup_4095f15f53f94bfc12d5d69a880ecf57)
+        ;
+
+        
+    
+    
+            circle_marker_243d1e2f142a388ea9537dcee8b69591.bindTooltip(
+                `<div>
+                     FM031
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_89df5c8d0d067a8ac75affa994f68059 = L.circleMarker(
+                [-23.569649005212963, -46.61767197410811],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_fe6946cb8f177414c9841eb0b1637cbf = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_354a3ea1d3232f5fc2038fc67ffca273 = $(`<div id="html_354a3ea1d3232f5fc2038fc67ffca273" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 32</b><br>Prioridade: Alta<br>Pedidos/mês: 147<br>Faturamento: R$ 298,263</div>`)[0];
+                popup_fe6946cb8f177414c9841eb0b1637cbf.setContent(html_354a3ea1d3232f5fc2038fc67ffca273);
+            
+        
+
+        circle_marker_89df5c8d0d067a8ac75affa994f68059.bindPopup(popup_fe6946cb8f177414c9841eb0b1637cbf)
+        ;
+
+        
+    
+    
+            circle_marker_89df5c8d0d067a8ac75affa994f68059.bindTooltip(
+                `<div>
+                     FM032
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7608b2643e07e8568ac4f0960d849068 = L.circleMarker(
+                [-23.59909120452993, -46.6703702161923],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_fb3478d39914480d31624a644ae59c36 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_d0d9956b2c411876f46d7cc3053f2870 = $(`<div id="html_d0d9956b2c411876f46d7cc3053f2870" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 33</b><br>Prioridade: Media<br>Pedidos/mês: 148<br>Faturamento: R$ 267,288</div>`)[0];
+                popup_fb3478d39914480d31624a644ae59c36.setContent(html_d0d9956b2c411876f46d7cc3053f2870);
+            
+        
+
+        circle_marker_7608b2643e07e8568ac4f0960d849068.bindPopup(popup_fb3478d39914480d31624a644ae59c36)
+        ;
+
+        
+    
+    
+            circle_marker_7608b2643e07e8568ac4f0960d849068.bindTooltip(
+                `<div>
+                     FM033
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_75a14f91d9d714fe640e2ecc1ff31e70 = L.circleMarker(
+                [-23.547489221137372, -46.54479852340775],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_6a15de33fd7ae8df89172ec5390644f6 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_c204400375a14359d418466f53a8960c = $(`<div id="html_c204400375a14359d418466f53a8960c" style="width: 100.0%; height: 100.0%;"><b>Farmácia Tatuapé 34</b><br>Prioridade: Media<br>Pedidos/mês: 22<br>Faturamento: R$ 26,598</div>`)[0];
+                popup_6a15de33fd7ae8df89172ec5390644f6.setContent(html_c204400375a14359d418466f53a8960c);
+            
+        
+
+        circle_marker_75a14f91d9d714fe640e2ecc1ff31e70.bindPopup(popup_6a15de33fd7ae8df89172ec5390644f6)
+        ;
+
+        
+    
+    
+            circle_marker_75a14f91d9d714fe640e2ecc1ff31e70.bindTooltip(
+                `<div>
+                     FM034
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_339f61c9f7631b659736e8006eabb6a0 = L.circleMarker(
+                [-23.661825269742245, -46.53625889968512],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_775694f26536c41b902ff020e98eb00c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7f408829790828196721695a13d42de9 = $(`<div id="html_7f408829790828196721695a13d42de9" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santo André 35</b><br>Prioridade: Alta<br>Pedidos/mês: 184<br>Faturamento: R$ 213,992</div>`)[0];
+                popup_775694f26536c41b902ff020e98eb00c.setContent(html_7f408829790828196721695a13d42de9);
+            
+        
+
+        circle_marker_339f61c9f7631b659736e8006eabb6a0.bindPopup(popup_775694f26536c41b902ff020e98eb00c)
+        ;
+
+        
+    
+    
+            circle_marker_339f61c9f7631b659736e8006eabb6a0.bindTooltip(
+                `<div>
+                     FM035
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4cc1001f6a4f7e39c805cf90807dd133 = L.circleMarker(
+                [-23.61860902960875, -46.54567970679793],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_a4e5a8cf976728a24da66da7a9190a5e = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_a1718668c0340c6b4be1b66d67cefd7a = $(`<div id="html_a1718668c0340c6b4be1b66d67cefd7a" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santo André 36</b><br>Prioridade: Media<br>Pedidos/mês: 115<br>Faturamento: R$ 229,425</div>`)[0];
+                popup_a4e5a8cf976728a24da66da7a9190a5e.setContent(html_a1718668c0340c6b4be1b66d67cefd7a);
+            
+        
+
+        circle_marker_4cc1001f6a4f7e39c805cf90807dd133.bindPopup(popup_a4e5a8cf976728a24da66da7a9190a5e)
+        ;
+
+        
+    
+    
+            circle_marker_4cc1001f6a4f7e39c805cf90807dd133.bindTooltip(
+                `<div>
+                     FM036
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dcb025301dc55633c2462f2f890ee294 = L.circleMarker(
+                [-23.575698104110483, -46.701137039762074],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_772f3c0586e95cef8d711127a858b020 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_378f99c44e4a6a576b1d8d83c41acc4e = $(`<div id="html_378f99c44e4a6a576b1d8d83c41acc4e" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 37</b><br>Prioridade: Baixa<br>Pedidos/mês: 71<br>Faturamento: R$ 127,161</div>`)[0];
+                popup_772f3c0586e95cef8d711127a858b020.setContent(html_378f99c44e4a6a576b1d8d83c41acc4e);
+            
+        
+
+        circle_marker_dcb025301dc55633c2462f2f890ee294.bindPopup(popup_772f3c0586e95cef8d711127a858b020)
+        ;
+
+        
+    
+    
+            circle_marker_dcb025301dc55633c2462f2f890ee294.bindTooltip(
+                `<div>
+                     FM037
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_17dcc85c98493810a3b1b341f5d966e2 = L.circleMarker(
+                [-23.565021770417463, -46.57687514941076],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_b0d5cc8ac48daf97a474f8cf8de1be92 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6d0a2c1f3e94160883582c149d1e9346 = $(`<div id="html_6d0a2c1f3e94160883582c149d1e9346" style="width: 100.0%; height: 100.0%;"><b>Farmácia Tatuapé 38</b><br>Prioridade: Baixa<br>Pedidos/mês: 132<br>Faturamento: R$ 281,952</div>`)[0];
+                popup_b0d5cc8ac48daf97a474f8cf8de1be92.setContent(html_6d0a2c1f3e94160883582c149d1e9346);
+            
+        
+
+        circle_marker_17dcc85c98493810a3b1b341f5d966e2.bindPopup(popup_b0d5cc8ac48daf97a474f8cf8de1be92)
+        ;
+
+        
+    
+    
+            circle_marker_17dcc85c98493810a3b1b341f5d966e2.bindTooltip(
+                `<div>
+                     FM038
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a252573eeb6d25c037c58beac6d2c17d = L.circleMarker(
+                [-23.582815950562253, -46.702311305264544],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_15d78c807d4906ff608cd29e39358bfb = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_41e7f916c088b1f293c045b51b523868 = $(`<div id="html_41e7f916c088b1f293c045b51b523868" style="width: 100.0%; height: 100.0%;"><b>Farmácia Paulista 39</b><br>Prioridade: Baixa<br>Pedidos/mês: 132<br>Faturamento: R$ 606,804</div>`)[0];
+                popup_15d78c807d4906ff608cd29e39358bfb.setContent(html_41e7f916c088b1f293c045b51b523868);
+            
+        
+
+        circle_marker_a252573eeb6d25c037c58beac6d2c17d.bindPopup(popup_15d78c807d4906ff608cd29e39358bfb)
+        ;
+
+        
+    
+    
+            circle_marker_a252573eeb6d25c037c58beac6d2c17d.bindTooltip(
+                `<div>
+                     FM039
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c836088f952a3f3bde7c676aa2854ce7 = L.circleMarker(
+                [-23.576032097677114, -46.732052124875],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_f1c3a1183a79a3c9229f147e256aa1e3 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_9207bd7d49ab141de4b96b664a23b7cb = $(`<div id="html_9207bd7d49ab141de4b96b664a23b7cb" style="width: 100.0%; height: 100.0%;"><b>Farmácia Faria Lima 40</b><br>Prioridade: Baixa<br>Pedidos/mês: 148<br>Faturamento: R$ 588,152</div>`)[0];
+                popup_f1c3a1183a79a3c9229f147e256aa1e3.setContent(html_9207bd7d49ab141de4b96b664a23b7cb);
+            
+        
+
+        circle_marker_c836088f952a3f3bde7c676aa2854ce7.bindPopup(popup_f1c3a1183a79a3c9229f147e256aa1e3)
+        ;
+
+        
+    
+    
+            circle_marker_c836088f952a3f3bde7c676aa2854ce7.bindTooltip(
+                `<div>
+                     FM040
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eb50b370a84dc3313583ca07016b6d49 = L.circleMarker(
+                [-23.577929454844522, -46.68440654166829],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_76de23bc7b7b5588bfa4ae510649ef29 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_0a6815a2e577295895e43e13ceef97db = $(`<div id="html_0a6815a2e577295895e43e13ceef97db" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 41</b><br>Prioridade: Alta<br>Pedidos/mês: 179<br>Faturamento: R$ 399,707</div>`)[0];
+                popup_76de23bc7b7b5588bfa4ae510649ef29.setContent(html_0a6815a2e577295895e43e13ceef97db);
+            
+        
+
+        circle_marker_eb50b370a84dc3313583ca07016b6d49.bindPopup(popup_76de23bc7b7b5588bfa4ae510649ef29)
+        ;
+
+        
+    
+    
+            circle_marker_eb50b370a84dc3313583ca07016b6d49.bindTooltip(
+                `<div>
+                     FM041
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8aa086314dac8c69ddc8d989dddb01b6 = L.circleMarker(
+                [-23.55829447284885, -46.77468644525941],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_a083f2283387c4c55ab67938ffe03c73 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_b3870287ef4a2dd66bb20bae0d2009cd = $(`<div id="html_b3870287ef4a2dd66bb20bae0d2009cd" style="width: 100.0%; height: 100.0%;"><b>Farmácia Osasco 42</b><br>Prioridade: Media<br>Pedidos/mês: 142<br>Faturamento: R$ 709,432</div>`)[0];
+                popup_a083f2283387c4c55ab67938ffe03c73.setContent(html_b3870287ef4a2dd66bb20bae0d2009cd);
+            
+        
+
+        circle_marker_8aa086314dac8c69ddc8d989dddb01b6.bindPopup(popup_a083f2283387c4c55ab67938ffe03c73)
+        ;
+
+        
+    
+    
+            circle_marker_8aa086314dac8c69ddc8d989dddb01b6.bindTooltip(
+                `<div>
+                     FM042
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_21179d9c678896ef7e98916c32bf24cb = L.circleMarker(
+                [-23.517378365138814, -46.58982168672807],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_01b3ab41dc08d3c1dfcfeaa92fff8348 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7431d087ffe8d85b9bde21d9ffd962c9 = $(`<div id="html_7431d087ffe8d85b9bde21d9ffd962c9" style="width: 100.0%; height: 100.0%;"><b>Farmácia Tatuapé 43</b><br>Prioridade: Baixa<br>Pedidos/mês: 135<br>Faturamento: R$ 94,095</div>`)[0];
+                popup_01b3ab41dc08d3c1dfcfeaa92fff8348.setContent(html_7431d087ffe8d85b9bde21d9ffd962c9);
+            
+        
+
+        circle_marker_21179d9c678896ef7e98916c32bf24cb.bindPopup(popup_01b3ab41dc08d3c1dfcfeaa92fff8348)
+        ;
+
+        
+    
+    
+            circle_marker_21179d9c678896ef7e98916c32bf24cb.bindTooltip(
+                `<div>
+                     FM043
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f02e48d46eaaa5bc8f99d8b55fcee0c7 = L.circleMarker(
+                [-23.507617555755544, -46.59445681267806],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_122d0575b2714b894034c75bc46a2869 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_d8f16578e3d50703d39cec9354cf338e = $(`<div id="html_d8f16578e3d50703d39cec9354cf338e" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santana 44</b><br>Prioridade: Alta<br>Pedidos/mês: 163<br>Faturamento: R$ 180,604</div>`)[0];
+                popup_122d0575b2714b894034c75bc46a2869.setContent(html_d8f16578e3d50703d39cec9354cf338e);
+            
+        
+
+        circle_marker_f02e48d46eaaa5bc8f99d8b55fcee0c7.bindPopup(popup_122d0575b2714b894034c75bc46a2869)
+        ;
+
+        
+    
+    
+            circle_marker_f02e48d46eaaa5bc8f99d8b55fcee0c7.bindTooltip(
+                `<div>
+                     FM044
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_616ba4fbfb028c55cda5ccb657303cef = L.circleMarker(
+                [-23.697828245603457, -46.52718012232593],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_0d274040e91380b9a01a831903069c8b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_135333b5129555e96f56b9f62ba9ae5e = $(`<div id="html_135333b5129555e96f56b9f62ba9ae5e" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santo André 45</b><br>Prioridade: Alta<br>Pedidos/mês: 112<br>Faturamento: R$ 256,928</div>`)[0];
+                popup_0d274040e91380b9a01a831903069c8b.setContent(html_135333b5129555e96f56b9f62ba9ae5e);
+            
+        
+
+        circle_marker_616ba4fbfb028c55cda5ccb657303cef.bindPopup(popup_0d274040e91380b9a01a831903069c8b)
+        ;
+
+        
+    
+    
+            circle_marker_616ba4fbfb028c55cda5ccb657303cef.bindTooltip(
+                `<div>
+                     FM045
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_73b8c0b107d8adcd46efb3ff2127b536 = L.circleMarker(
+                [-23.586910705681177, -46.66974356381577],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_290fa368cdd0424787adb07d23684634 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_675ca5823c20d10a18812bc1ec9f171c = $(`<div id="html_675ca5823c20d10a18812bc1ec9f171c" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 46</b><br>Prioridade: Alta<br>Pedidos/mês: 166<br>Faturamento: R$ 310,254</div>`)[0];
+                popup_290fa368cdd0424787adb07d23684634.setContent(html_675ca5823c20d10a18812bc1ec9f171c);
+            
+        
+
+        circle_marker_73b8c0b107d8adcd46efb3ff2127b536.bindPopup(popup_290fa368cdd0424787adb07d23684634)
+        ;
+
+        
+    
+    
+            circle_marker_73b8c0b107d8adcd46efb3ff2127b536.bindTooltip(
+                `<div>
+                     FM046
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b07f1a8a65f3d5a8badfe52e8e80fbe1 = L.circleMarker(
+                [-23.661690694170073, -46.5553504224802],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_78544ab451386c8f2dcebc4316b3cc3c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_a919db39c72260796d86c83bab3f7376 = $(`<div id="html_a919db39c72260796d86c83bab3f7376" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santo André 47</b><br>Prioridade: Media<br>Pedidos/mês: 115<br>Faturamento: R$ 256,910</div>`)[0];
+                popup_78544ab451386c8f2dcebc4316b3cc3c.setContent(html_a919db39c72260796d86c83bab3f7376);
+            
+        
+
+        circle_marker_b07f1a8a65f3d5a8badfe52e8e80fbe1.bindPopup(popup_78544ab451386c8f2dcebc4316b3cc3c)
+        ;
+
+        
+    
+    
+            circle_marker_b07f1a8a65f3d5a8badfe52e8e80fbe1.bindTooltip(
+                `<div>
+                     FM047
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b7b31a041ccd337cbb39a5ca4a45b8de = L.circleMarker(
+                [-23.5727633570995, -46.55750622618975],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_d6cb245a4dcd4e539d369125e42a2cf6 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_893b50abae160f7dde70d1b0d8df2d1e = $(`<div id="html_893b50abae160f7dde70d1b0d8df2d1e" style="width: 100.0%; height: 100.0%;"><b>Farmácia Tatuapé 48</b><br>Prioridade: Alta<br>Pedidos/mês: 147<br>Faturamento: R$ 424,095</div>`)[0];
+                popup_d6cb245a4dcd4e539d369125e42a2cf6.setContent(html_893b50abae160f7dde70d1b0d8df2d1e);
+            
+        
+
+        circle_marker_b7b31a041ccd337cbb39a5ca4a45b8de.bindPopup(popup_d6cb245a4dcd4e539d369125e42a2cf6)
+        ;
+
+        
+    
+    
+            circle_marker_b7b31a041ccd337cbb39a5ca4a45b8de.bindTooltip(
+                `<div>
+                     FM048
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1aa093d4751cab5428ffc377c605b422 = L.circleMarker(
+                [-23.562228989409267, -46.66993098829607],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_2222705fbc68abcc3d65cc34411ad68b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_328644528356b67daa9ce5a6f0d7f71e = $(`<div id="html_328644528356b67daa9ce5a6f0d7f71e" style="width: 100.0%; height: 100.0%;"><b>Farmácia Berrini 49</b><br>Prioridade: Baixa<br>Pedidos/mês: 197<br>Faturamento: R$ 898,517</div>`)[0];
+                popup_2222705fbc68abcc3d65cc34411ad68b.setContent(html_328644528356b67daa9ce5a6f0d7f71e);
+            
+        
+
+        circle_marker_1aa093d4751cab5428ffc377c605b422.bindPopup(popup_2222705fbc68abcc3d65cc34411ad68b)
+        ;
+
+        
+    
+    
+            circle_marker_1aa093d4751cab5428ffc377c605b422.bindTooltip(
+                `<div>
+                     FM049
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7c9bda424924a76a285ac7745f11a6a9 = L.circleMarker(
+                [-23.64332156006549, -46.55514499782027],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+        var popup_bcadd29df0931e040180236cbd9d7f4a = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_0f3958ad2897a047a73d2658d0b6986f = $(`<div id="html_0f3958ad2897a047a73d2658d0b6986f" style="width: 100.0%; height: 100.0%;"><b>Farmácia Santo André 50</b><br>Prioridade: Alta<br>Pedidos/mês: 163<br>Faturamento: R$ 183,049</div>`)[0];
+                popup_bcadd29df0931e040180236cbd9d7f4a.setContent(html_0f3958ad2897a047a73d2658d0b6986f);
+            
+        
+
+        circle_marker_7c9bda424924a76a285ac7745f11a6a9.bindPopup(popup_bcadd29df0931e040180236cbd9d7f4a)
+        ;
+
+        
+    
+    
+            circle_marker_7c9bda424924a76a285ac7745f11a6a9.bindTooltip(
+                `<div>
+                     FM050
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6e2f532bb30ef09c4fee7070b4a0943f = L.polyline(
+                [[-23.53029196753602, -46.79071397686576], [-23.697828245603457, -46.52718012232593], [-23.547489221137372, -46.54479852340775], [-23.541821506696028, -46.61795321609847], [-23.524410617437784, -46.6519974533974], [-23.62894758763127, -46.73099484070147], [-23.53029196753602, -46.79071397686576]],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#e41a1c", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_6e2f532bb30ef09c4fee7070b4a0943f.bindTooltip(
+                `<div>
+                     Representante REP01
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_29665a14f719101515bd0d71a04ba9e0 = L.marker(
+                [-23.53029196753602, -46.79071397686576],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_f548423432fe9e4230b74be1dfa05648 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_29665a14f719101515bd0d71a04ba9e0.bindTooltip(
+                `<div>
+                     Base REP01
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_29665a14f719101515bd0d71a04ba9e0.setIcon(icon_f548423432fe9e4230b74be1dfa05648);
+            
+    
+            var poly_line_61bb78488bfc20ed70a7adfe667aa1b3 = L.polyline(
+                [[-23.46462590836398, -46.54957588928776], [-23.569649005212963, -46.61767197410811], [-23.607256641046156, -46.63493371103142], [-23.506436796692544, -46.57106026518836], [-23.565021770417463, -46.57687514941076], [-23.582659624348956, -46.650353940981226], [-23.46462590836398, -46.54957588928776]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_61bb78488bfc20ed70a7adfe667aa1b3.bindTooltip(
+                `<div>
+                     Representante REP02
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_63eaa3771308f537e4f344358aa689fb = L.marker(
+                [-23.46462590836398, -46.54957588928776],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_df7ddfb54a077938282e51d605ff40cb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_63eaa3771308f537e4f344358aa689fb.bindTooltip(
+                `<div>
+                     Base REP02
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_63eaa3771308f537e4f344358aa689fb.setIcon(icon_df7ddfb54a077938282e51d605ff40cb);
+            
+    
+            var poly_line_f38337a3512374f1a7c6cc6d7463ed16 = L.polyline(
+                [[-23.516611369681865, -46.77588327771347], [-23.53344839135739, -46.637966854559416], [-23.56098497639982, -46.59063411342062], [-23.57002807976646, -46.53702364043265], [-23.5727633570995, -46.55750622618975], [-23.493778725742366, -46.7946785074838], [-23.516611369681865, -46.77588327771347]],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4daf4a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_f38337a3512374f1a7c6cc6d7463ed16.bindTooltip(
+                `<div>
+                     Representante REP03
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_90c945cbea2c103194e76c9a4ed2a6bf = L.marker(
+                [-23.516611369681865, -46.77588327771347],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_a423045a901842ad0bb0f1f4c9b5b8f0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_90c945cbea2c103194e76c9a4ed2a6bf.bindTooltip(
+                `<div>
+                     Base REP03
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_90c945cbea2c103194e76c9a4ed2a6bf.setIcon(icon_a423045a901842ad0bb0f1f4c9b5b8f0);
+            
+    
+            var poly_line_9c16a229161f3ff9bdfbe868b15a58e9 = L.polyline(
+                [[-23.57097594170907, -46.69363880835805], [-23.517075775704043, -46.62362435683678], [-23.507617555755544, -46.59445681267806], [-23.575698104110483, -46.701137039762074], [-23.627776391221193, -46.661963858968235], [-23.517378365138814, -46.58982168672807], [-23.57097594170907, -46.69363880835805]],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#984ea3", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_9c16a229161f3ff9bdfbe868b15a58e9.bindTooltip(
+                `<div>
+                     Representante REP04
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_ce89326a7a755b472f2c095e345d80a8 = L.marker(
+                [-23.57097594170907, -46.69363880835805],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_c867e59fde8d49d2d5f2030807bc6f4e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_ce89326a7a755b472f2c095e345d80a8.bindTooltip(
+                `<div>
+                     Base REP04
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ce89326a7a755b472f2c095e345d80a8.setIcon(icon_c867e59fde8d49d2d5f2030807bc6f4e);
+            
+    
+            var poly_line_f71b1eda592f6963d692209b3b7a2f60 = L.polyline(
+                [[-23.546231617015493, -46.56756177284519], [-23.541814710527763, -46.6379506139348], [-23.576032097677114, -46.732052124875], [-23.562228989409267, -46.66993098829607], [-23.533615874733638, -46.61670776433825], [-23.540670187317247, -46.61881019751473], [-23.546231617015493, -46.56756177284519]],
+                {"bubblingMouseEvents": true, "color": "#ff7f00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ff7f00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_f71b1eda592f6963d692209b3b7a2f60.bindTooltip(
+                `<div>
+                     Representante REP05
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_27b9becfbd452ab6a1aba8cf7557186e = L.marker(
+                [-23.546231617015493, -46.56756177284519],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_17edcb0edba9877e13d3b7023193d0a7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_27b9becfbd452ab6a1aba8cf7557186e.bindTooltip(
+                `<div>
+                     Base REP05
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_27b9becfbd452ab6a1aba8cf7557186e.setIcon(icon_17edcb0edba9877e13d3b7023193d0a7);
+            
+    
+            var poly_line_e1cef0f159f8655bc2617133fa660764 = L.polyline(
+                [[-23.560415589601895, -46.67171654302939], [-23.534075523070335, -46.68612843184658], [-23.46418050882638, -46.658763534649225], [-23.55829447284885, -46.77468644525941], [-23.573845988115263, -46.610928569359004], [-23.53623078676109, -46.56792488343361], [-23.560415589601895, -46.67171654302939]],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#a65628", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_e1cef0f159f8655bc2617133fa660764.bindTooltip(
+                `<div>
+                     Representante REP06
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_25a34ed8d5610a32711b1ed894e9feb7 = L.marker(
+                [-23.560415589601895, -46.67171654302939],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_03e9d267c857c325f24137e8fededa79 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_25a34ed8d5610a32711b1ed894e9feb7.bindTooltip(
+                `<div>
+                     Base REP06
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_25a34ed8d5610a32711b1ed894e9feb7.setIcon(icon_03e9d267c857c325f24137e8fededa79);
+            
+    
+            var poly_line_895d1a40a51aaf42f62ef3ae5c651b83 = L.polyline(
+                [[-23.584804978165696, -46.68181873415383], [-23.58588849882568, -46.6666927422204], [-23.59143935654672, -46.62146139906669], [-23.552058543113795, -46.701354958728], [-23.4313992831959, -46.5061729653314], [-23.677053427145573, -46.56641309404748], [-23.584804978165696, -46.68181873415383]],
+                {"bubblingMouseEvents": true, "color": "#f781bf", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f781bf", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_895d1a40a51aaf42f62ef3ae5c651b83.bindTooltip(
+                `<div>
+                     Representante REP07
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_3b3f1c95421880029cec79df58165b8e = L.marker(
+                [-23.584804978165696, -46.68181873415383],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_de0b15e6914a49f29b926c8eb9aa5a74 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_3b3f1c95421880029cec79df58165b8e.bindTooltip(
+                `<div>
+                     Base REP07
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3b3f1c95421880029cec79df58165b8e.setIcon(icon_de0b15e6914a49f29b926c8eb9aa5a74);
+            
+    
+            var poly_line_9308ab862031910fb0f245eef2410633 = L.polyline(
+                [[-23.514134401400195, -46.63963485143621], [-23.548328972065672, -46.63341455444745], [-23.582815950562253, -46.702311305264544], [-23.539100122773316, -46.612144729098425], [-23.59909120452993, -46.6703702161923], [-23.61860902960875, -46.54567970679793], [-23.514134401400195, -46.63963485143621]],
+                {"bubblingMouseEvents": true, "color": "#999999", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#999999", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_9308ab862031910fb0f245eef2410633.bindTooltip(
+                `<div>
+                     Representante REP08
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_826b1486e67cf8391bba51a6058255e0 = L.marker(
+                [-23.514134401400195, -46.63963485143621],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_c2d5aa27df94439b4b264db2319ad5c7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_826b1486e67cf8391bba51a6058255e0.bindTooltip(
+                `<div>
+                     Base REP08
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_826b1486e67cf8391bba51a6058255e0.setIcon(icon_c2d5aa27df94439b4b264db2319ad5c7);
+            
+    
+            var poly_line_c10bf1fb56355bf4b5cb6b2506f3d295 = L.polyline(
+                [[-23.481557832458915, -46.62184283761362], [-23.577929454844522, -46.68440654166829], [-23.49545074979481, -46.563701713758086], [-23.64332156006549, -46.55514499782027], [-23.53051498420535, -46.58201672471464], [-23.661690694170073, -46.5553504224802], [-23.481557832458915, -46.62184283761362]],
+                {"bubblingMouseEvents": true, "color": "#66c2a5", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#66c2a5", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_c10bf1fb56355bf4b5cb6b2506f3d295.bindTooltip(
+                `<div>
+                     Representante REP09
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e698520cdf9c50532ee5675290ab47bd = L.marker(
+                [-23.481557832458915, -46.62184283761362],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_4370058573eaa6f63eb689c9e90b9126 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_e698520cdf9c50532ee5675290ab47bd.bindTooltip(
+                `<div>
+                     Base REP09
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e698520cdf9c50532ee5675290ab47bd.setIcon(icon_4370058573eaa6f63eb689c9e90b9126);
+            
+    
+            var poly_line_4480ac7fc11e4755c59ff9ec4b0cfff6 = L.polyline(
+                [[-23.559832117935333, -46.592541138285355], [-23.586910705681177, -46.66974356381577], [-23.631907577502524, -46.657280301924594], [-23.582693877526523, -46.5576146429442], [-23.53522149513831, -46.64987228024305], [-23.661825269742245, -46.53625889968512], [-23.559832117935333, -46.592541138285355]],
+                {"bubblingMouseEvents": true, "color": "#fc8d62", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#fc8d62", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            poly_line_4480ac7fc11e4755c59ff9ec4b0cfff6.bindTooltip(
+                `<div>
+                     Representante REP10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c85d41b94002771e8d68fb1730a62851 = L.marker(
+                [-23.559832117935333, -46.592541138285355],
+                {
+}
+            ).addTo(map_d98c472cb082d1b4c40289827ae62ccb);
+        
+    
+            var icon_c9ef2ff1b23cc6684d1ec5f4affa14ca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_c85d41b94002771e8d68fb1730a62851.bindTooltip(
+                `<div>
+                     Base REP10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c85d41b94002771e8d68fb1730a62851.setIcon(icon_c9ef2ff1b23cc6684d1ec5f4affa14ca);
+            
+</script>
+</html>

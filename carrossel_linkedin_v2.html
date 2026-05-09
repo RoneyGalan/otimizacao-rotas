@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Carrossel LinkedIn — Otimização de Rotas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #080808; font-family: 'DM Sans', sans-serif;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 56px; padding: 56px 20px;
+  }
+  .label {
+    color: #444; font-size: 12px; letter-spacing: 3px;
+    text-transform: uppercase; text-align: center; margin-bottom: 10px;
+  }
+  .slide {
+    width: 1080px; height: 1080px;
+    position: relative; overflow: hidden; border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .brand { position: absolute; bottom: 44px; left: 60px; font-family: 'Syne', sans-serif; font-size: 12px; color: #2a2a2a; letter-spacing: 1px; }
+  .slide-num { position: absolute; bottom: 44px; right: 60px; font-family: 'Syne', sans-serif; font-size: 12px; color: #2a2a2a; letter-spacing: 3px; }
+  .top-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+
+  /* ── SLIDE 1 — CAPA ── */
+  .s1 { background: #06090a; display: flex; flex-direction: column; justify-content: center; padding: 80px; }
+  .s1 .glow-a { position: absolute; top: -180px; right: -180px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(34,197,94,0.22) 0%, transparent 65%); border-radius: 50%; }
+  .s1 .glow-b { position: absolute; bottom: -120px; left: -80px; width: 380px; height: 380px; background: radial-gradient(circle, rgba(245,197,24,0.10) 0%, transparent 65%); border-radius: 50%; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.3); color: #4ade80; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; padding: 7px 18px; border-radius: 100px; margin-bottom: 52px; width: fit-content; }
+  .s1 h1 { font-family: 'Syne', sans-serif; font-size: 74px; font-weight: 800; color: #fff; line-height: 1.02; margin-bottom: 28px; }
+  .s1 h1 em { color: #4ade80; font-style: normal; }
+  .s1 .sub { font-size: 21px; color: #5a5a5a; line-height: 1.65; max-width: 680px; margin-bottom: 68px; }
+  .s1 .sub strong { color: #888; font-weight: 500; }
+  .stat-row { display: flex; align-items: center; gap: 0; }
+  .stat { display: flex; flex-direction: column; gap: 5px; padding: 0 40px; }
+  .stat:first-child { padding-left: 0; }
+  .stat-n { font-family: 'Syne', sans-serif; font-size: 52px; font-weight: 800; color: #fff; line-height: 1; }
+  .stat-n em { color: #4ade80; font-style: normal; }
+  .stat-l { font-size: 12px; color: #444; text-transform: uppercase; letter-spacing: 1.5px; }
+  .stat-sep { width: 1px; height: 56px; background: #1a1a1a; }
+  .context-tag { position: absolute; top: 56px; right: 60px; font-size: 12px; color: #2a2a2a; letter-spacing: 1px; font-family: 'Syne', sans-serif; }
+
+  /* ── SLIDE 2 — GANHO DA EMPRESA ── */
+  .s2 { background: #06080a; padding: 68px; display: flex; flex-direction: column; }
+  .s2-accent { position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%); border-radius: 50%; }
+  .section-eyebrow { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; color: #4ade80; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 14px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 52px; }
+  .section-title em { color: #4ade80; font-style: normal; }
+  .big-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+  .big-card { border-radius: 14px; padding: 32px; position: relative; overflow: hidden; }
+  .big-card.loss { background: rgba(214,39,40,0.07); border: 1px solid rgba(214,39,40,0.2); }
+  .big-card.gain { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.25); }
+  .big-card .bc-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; }
+  .big-card.loss .bc-label { color: #d62728; }
+  .big-card.gain .bc-label { color: #4ade80; }
+  .big-card .bc-val { font-family: 'Syne', sans-serif; font-size: 54px; font-weight: 800; line-height: 1; margin-bottom: 10px; }
+  .big-card.loss .bc-val { color: #ff4444; }
+  .big-card.gain .bc-val { color: #4ade80; }
+  .big-card .bc-sub { font-size: 14px; color: #444; line-height: 1.5; }
+  .mini-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .mini-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 24px; }
+  .mini-card .mc-icon { font-size: 24px; margin-bottom: 12px; }
+  .mini-card .mc-val { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .mini-card .mc-val em { color: #4ade80; font-style: normal; }
+  .mini-card .mc-label { font-size: 12px; color: #444; line-height: 1.5; }
+
+  /* ── SLIDE 3 — BENEFÍCIO DO REPRESENTANTE ── */
+  .s3 { background: #050a06; padding: 68px; display: flex; flex-direction: column; }
+  .s3-glow { position: absolute; bottom: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 65%); border-radius: 50%; }
+  .day-flow { display: flex; flex-direction: column; gap: 0; margin-bottom: 40px; position: relative; }
+  .day-flow::before { content: ''; position: absolute; left: 24px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(to bottom, #4ade80 0%, rgba(34,197,94,0.1) 100%); }
+  .day-step { display: flex; gap: 28px; padding: 18px 0; align-items: flex-start; }
+  .day-dot { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; position: relative; z-index: 1; }
+  .day-dot.a { background: rgba(34,197,94,0.12); border: 2px solid #4ade80; }
+  .day-dot.b { background: rgba(245,197,24,0.10); border: 2px solid rgba(245,197,24,0.5); }
+  .day-dot.c { background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.12); }
+  .day-content { flex: 1; padding-top: 10px; }
+  .day-time { font-size: 11px; color: #4ade80; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+  .day-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+  .day-desc { font-size: 15px; color: #4a4a4a; line-height: 1.55; }
+  .day-badge { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: #4ade80; font-size: 12px; padding: 4px 12px; border-radius: 100px; margin-top: 8px; display: inline-block; }
+  .benefit-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .benefit { background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.12); border-radius: 12px; padding: 22px; }
+  .benefit .b-icon { font-size: 26px; margin-bottom: 10px; }
+  .benefit .b-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .benefit .b-desc { font-size: 13px; color: #444; line-height: 1.5; }
+
+  /* ── SLIDE 4 — RESULTADO NOS PONTOS VISITADOS ── */
+  .s4 { background: #07070a; padding: 68px; display: flex; flex-direction: column; }
+  .s4-glow { position: absolute; top: -80px; left: -80px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(245,197,24,0.08) 0%, transparent 70%); border-radius: 50%; }
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+  .result-card { border-radius: 14px; padding: 34px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
+  .result-card.featured { background: rgba(245,197,24,0.06); border-color: rgba(245,197,24,0.2); }
+  .rc-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #444; margin-bottom: 16px; }
+  .result-card.featured .rc-eyebrow { color: #f5c518; }
+  .rc-val { font-family: 'Syne', sans-serif; font-size: 56px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 8px; }
+  .result-card.featured .rc-val { color: #f5c518; }
+  .rc-sub { font-size: 14px; color: #444; line-height: 1.6; }
+  .impact-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .impact-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 20px 16px; text-align: center; }
+  .impact-icon { font-size: 26px; margin-bottom: 10px; }
+  .impact-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .impact-label { font-size: 11px; color: #444; line-height: 1.5; }
+
+  /* ── SLIDE 5 — CONCLUSÃO & CTA ── */
+  .s5 { background: #040904; display: flex; flex-direction: column; justify-content: center; padding: 80px; }
+  .s5-glow-a { position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(34,197,94,0.18) 0%, transparent 65%); border-radius: 50%; }
+  .s5-glow-b { position: absolute; bottom: -80px; left: -80px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 65%); border-radius: 50%; }
+  .big-quote { font-family: 'Syne', sans-serif; font-size: 58px; font-weight: 800; color: #fff; line-height: 1.08; margin-bottom: 40px; }
+  .big-quote em { color: #4ade80; font-style: normal; }
+  .takeaway-list { display: flex; flex-direction: column; gap: 20px; margin-bottom: 56px; }
+  .takeaway { display: flex; align-items: flex-start; gap: 20px; }
+  .takeaway-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; flex-shrink: 0; margin-top: 9px; }
+  .takeaway-text { font-size: 20px; color: #666; line-height: 1.5; }
+  .takeaway-text strong { color: #bbb; font-weight: 500; }
+  .cta-box { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 16px; padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; }
+  .cta-left { display: flex; flex-direction: column; gap: 6px; }
+  .cta-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: #fff; }
+  .cta-sub { font-size: 15px; color: #444; }
+  .cta-link { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: #4ade80; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 — CAPA -->
+<div class="label">SLIDE 1 / 5 — CAPA</div>
+<div class="slide s1">
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+  <div class="top-bar" style="background: linear-gradient(90deg,#4ade80,#22c55e,#4ade80);"></div>
+  <div class="context-tag">Grande São Paulo · Python</div>
+  <div class="pill">📦 Projeto de Dados</div>
+  <h1>Otimização<br>de Rotas<br><em>Comerciais</em></h1>
+  <p class="sub">Como uma distribuidora farmacêutica reduziu <strong>35% dos custos de deslocamento</strong> reorganizando as rotas dos representantes com algoritmos de otimização.</p>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-n"><em>50</em></div>
+      <div class="stat-l">Farmácias</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-n"><em>10</em></div>
+      <div class="stat-l">Representantes</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-n"><em>−35%</em></div>
+      <div class="stat-l">Km percorridos</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-n"><em>Mês 2</em></div>
+      <div class="stat-l">Break-even</div>
+    </div>
+  </div>
+  <div class="brand">Roney Galan · github.com/RoneyGalan</div>
+  <div class="slide-num">01 / 05</div>
+</div>
+
+<!-- SLIDE 2 — O QUE A EMPRESA GANHOU -->
+<div class="label">SLIDE 2 / 5 — O QUE A EMPRESA GANHOU</div>
+<div class="slide s2">
+  <div class="s2-accent"></div>
+  <div class="top-bar" style="background: linear-gradient(90deg,#4ade80,#f5c518);"></div>
+  <div class="section-eyebrow">Impacto financeiro</div>
+  <div class="section-title">O que a empresa<br><em>ganhou</em> com isso?</div>
+  <div class="big-cards">
+    <div class="big-card loss">
+      <div class="bc-label">❌ Deixava de perder por semana</div>
+      <div class="bc-val">R$ 292</div>
+      <div class="bc-sub">em combustível desperdiçado com rotas mal planejadas — R$ 14.600 ao ano jogados fora</div>
+    </div>
+    <div class="big-card gain">
+      <div class="bc-label">✅ Passou a economizar por semana</div>
+      <div class="bc-val">R$ 292</div>
+      <div class="bc-sub">redirecionados para operação, treinamento ou margem — com break-even no 2º mês</div>
+    </div>
+  </div>
+  <div class="mini-cards">
+    <div class="mini-card">
+      <div class="mc-icon">📉</div>
+      <div class="mc-val"><em>−195 km</em></div>
+      <div class="mc-label">de deslocamento eliminado por semana</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-icon">📅</div>
+      <div class="mc-val"><em>+2 meses</em></div>
+      <div class="mc-label">de planejamento antecipado das rotas</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-icon">📈</div>
+      <div class="mc-val"><em>R$ 9.600</em></div>
+      <div class="mc-label">de ROI líquido projetado em 12 meses</div>
+    </div>
+  </div>
+  <div class="brand">Roney Galan · github.com/RoneyGalan</div>
+  <div class="slide-num">02 / 05</div>
+</div>
+
+<!-- SLIDE 3 — O DIA A DIA DO REPRESENTANTE -->
+<div class="label">SLIDE 3 / 5 — O DIA A DIA DO REPRESENTANTE</div>
+<div class="slide s3">
+  <div class="s3-glow"></div>
+  <div class="top-bar" style="background: linear-gradient(90deg,#22c55e,#4ade80,#22c55e);"></div>
+  <div class="section-eyebrow">Experiência do representante</div>
+  <div class="section-title">Como mudou o<br><em>dia a dia</em> de quem está em campo</div>
+  <div class="day-flow">
+    <div class="day-step">
+      <div class="day-dot a">☀️</div>
+      <div class="day-content">
+        <div class="day-time">Ao acordar</div>
+        <div class="day-title">Rota do dia já definida e otimizada</div>
+        <div class="day-desc">O representante abre o sistema e já vê quais farmácias visitar, em qual ordem e pelo menor caminho possível — sem precisar planejar nada.</div>
+        <div class="day-badge">Zero decisão operacional no começo do dia</div>
+      </div>
+    </div>
+    <div class="day-step">
+      <div class="day-dot b">🗺️</div>
+      <div class="day-content">
+        <div class="day-time">Durante o dia</div>
+        <div class="day-title">Mais visitas, menos trânsito</div>
+        <div class="day-desc">Com rotas por proximidade geográfica, o representante chega mais rápido, cansa menos e ainda sobra tempo para atender melhor cada cliente.</div>
+        <div class="day-badge">+2 a 3 farmácias visitadas por dia em média</div>
+      </div>
+    </div>
+    <div class="day-step">
+      <div class="day-dot c">🏁</div>
+      <div class="day-content">
+        <div class="day-time">Ao final do dia</div>
+        <div class="day-title">Mais resultado, menos desgaste</div>
+        <div class="day-desc">Menos horas no volante significa mais energia para negociar, apresentar produtos e construir relacionamento com os clientes.</div>
+      </div>
+    </div>
+  </div>
+  <div class="benefit-row">
+    <div class="benefit">
+      <div class="b-icon">⚡</div>
+      <div class="b-title">Mais agilidade</div>
+      <div class="b-desc">Rotas otimizadas por proximidade real no mapa</div>
+    </div>
+    <div class="benefit">
+      <div class="b-icon">🎯</div>
+      <div class="b-title">Foco estratégico</div>
+      <div class="b-desc">Energia direcionada para vender, não para dirigir</div>
+    </div>
+    <div class="benefit">
+      <div class="b-icon">😌</div>
+      <div class="b-title">Menos estresse</div>
+      <div class="b-desc">Dia planejado antes mesmo de sair de casa</div>
+    </div>
+  </div>
+  <div class="brand">Roney Galan · github.com/RoneyGalan</div>
+  <div class="slide-num">03 / 05</div>
+</div>
+
+<!-- SLIDE 4 — RESULTADO NOS PONTOS VISITADOS -->
+<div class="label">SLIDE 4 / 5 — RESULTADO NOS PONTOS VISITADOS</div>
+<div class="slide s4">
+  <div class="s4-glow"></div>
+  <div class="top-bar" style="background: linear-gradient(90deg,#f5c518,#4ade80);"></div>
+  <div class="section-eyebrow">Nas farmácias visitadas</div>
+  <div class="section-title">Mais tempo com o cliente,<br><em>mais resultado</em> no ponto</div>
+  <div class="result-grid">
+    <div class="result-card featured">
+      <div class="rc-eyebrow">⭐ Principal ganho</div>
+      <div class="rc-val">+28 min</div>
+      <div class="rc-sub">de tempo médio disponível por visita — antes era tudo corrido por conta do deslocamento excessivo entre pontos distantes</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-eyebrow">📊 Cobertura</div>
+      <div class="rc-val">100%</div>
+      <div class="rc-sub">das farmácias de alta prioridade passam a ser visitadas semanalmente — antes algumas ficavam sem visita por falta de tempo</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-eyebrow">🤝 Relacionamento</div>
+      <div class="rc-val">+3x</div>
+      <div class="rc-sub">mais frequência de contato nos clientes estratégicos — representante chega com mais calma e tempo para conversar</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-eyebrow">💊 Mix de produtos</div>
+      <div class="rc-val">+18%</div>
+      <div class="rc-sub">de itens apresentados por visita — com mais tempo disponível, o representante consegue trabalhar o portfólio completo</div>
+    </div>
+  </div>
+  <div class="impact-row">
+    <div class="impact-item">
+      <div class="impact-icon">🔴</div>
+      <div class="impact-val">Alta</div>
+      <div class="impact-label">prioridade sempre<br>atendida 1ª</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-icon">📍</div>
+      <div class="impact-val">50</div>
+      <div class="impact-label">pontos cobertos<br>por semana</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-icon">⏱️</div>
+      <div class="impact-val">−42 min</div>
+      <div class="impact-label">de deslocamento<br>por representante/dia</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-icon">💬</div>
+      <div class="impact-val">+Quality</div>
+      <div class="impact-label">nas interações<br>com o cliente</div>
+    </div>
+  </div>
+  <div class="brand">Roney Galan · github.com/RoneyGalan</div>
+  <div class="slide-num">04 / 05</div>
+</div>
+
+<!-- SLIDE 5 — CONCLUSÃO & CTA -->
+<div class="label">SLIDE 5 / 5 — CONCLUSÃO & CTA</div>
+<div class="slide s5">
+  <div class="s5-glow-a"></div>
+  <div class="s5-glow-b"></div>
+  <div class="top-bar" style="background: linear-gradient(90deg,#4ade80,#22c55e,#4ade80);"></div>
+  <div class="big-quote">O maior inimigo<br>da produtividade<br>é a rota <em>errada.</em></div>
+  <div class="takeaway-list">
+    <div class="takeaway">
+      <div class="takeaway-dot"></div>
+      <div class="takeaway-text"><strong>Dados + algoritmo</strong> resolvem em minutos o que o feeling nunca vai conseguir otimizar</div>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-dot"></div>
+      <div class="takeaway-text">Esse modelo funciona para <strong>qualquer equipe em campo</strong> — varejo, saúde, seguros, manutenção</div>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-dot"></div>
+      <div class="takeaway-text">ROI positivo em <strong>menos de 60 dias.</strong> Sem tecnologia cara. Só Python e os dados que você já tem</div>
+    </div>
+  </div>
+  <div class="cta-box">
+    <div class="cta-left">
+      <div class="cta-title">Código completo disponível no GitHub</div>
+      <div class="cta-sub">Notebook com simulação, otimização, mapas interativos e projeção de ROI</div>
+    </div>
+    <div class="cta-link">github.com/RoneyGalan →</div>
+  </div>
+  <div class="brand">Roney Galan · github.com/RoneyGalan</div>
+  <div class="slide-num">05 / 05</div>
+</div>
+
+</body>
+</html>

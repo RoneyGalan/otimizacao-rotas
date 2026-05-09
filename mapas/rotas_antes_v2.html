@@ -1,0 +1,2415 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_9fe86431845aac23fc2703050a1d5127 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position:fixed;top:10px;left:50%;transform:translateX(-50%);
+                z-index:1000;background:white;padding:10px 20px;
+                border-radius:8px;border:2px solid #333;
+                font-size:15px;font-weight:bold;text-align:center;">
+        Rotas ANTES da Otimização — Distribuidora Farmacêutica | Grande São Paulo
+    </div>
+    
+    <div style="position:fixed;bottom:20px;left:15px;z-index:1000;
+                background:white;padding:14px;border-radius:10px;
+                border:2px solid #aaa;font-size:12px;max-width:230px;">
+        <b>📋 Representantes</b><br><br>
+        <span style='color:#e41a1c;font-size:16px;'>■</span> Representante 1: <b>87.6 km</b><br><span style='color:#377eb8;font-size:16px;'>■</span> Representante 2: <b>62.0 km</b><br><span style='color:#4daf4a;font-size:16px;'>■</span> Representante 3: <b>56.5 km</b><br><span style='color:#984ea3;font-size:16px;'>■</span> Representante 4: <b>59.2 km</b><br><span style='color:#ff7f00;font-size:16px;'>■</span> Representante 5: <b>36.4 km</b><br><span style='color:#a65628;font-size:16px;'>■</span> Representante 6: <b>61.1 km</b><br><span style='color:#f781bf;font-size:16px;'>■</span> Representante 7: <b>83.0 km</b><br><span style='color:#555555;font-size:16px;'>■</span> Representante 8: <b>59.1 km</b><br><span style='color:#66c2a5;font-size:16px;'>■</span> Representante 9: <b>93.1 km</b><br><span style='color:#fc8d62;font-size:16px;'>■</span> Representante 10: <b>66.8 km</b><br>
+        <hr style="margin:6px 0">
+        <b>Total:</b> 664.9 km
+    </div>
+    
+    <div style="position:fixed;bottom:20px;right:15px;z-index:1000;
+                background:white;padding:14px;border-radius:10px;
+                border:2px solid #aaa;font-size:13px;">
+        <b>🏥 Prioridade</b><br><br>
+        🔴 Alta<br>🟠 Média<br>🔵 Baixa<br>
+        🏠 Base do representante
+    </div>
+    
+            <div class="folium-map" id="map_9fe86431845aac23fc2703050a1d5127" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_9fe86431845aac23fc2703050a1d5127 = L.map(
+                "map_9fe86431845aac23fc2703050a1d5127",
+                {
+                    center: [-23.5505, -46.6333],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1b27cfb718a4c467535bc8f2922699fe = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_1b27cfb718a4c467535bc8f2922699fe.addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var circle_marker_203c88d13199395f28dc2b6a66041dbb = L.circleMarker(
+                [-23.573845988115263, -46.610928569359004],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_4e3d7f3577f7c10b194bb31dde08aba9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c1a3a8c0b513d957765eaf99f3b516ee = $(`<div id="html_c1a3a8c0b513d957765eaf99f3b516ee" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Paulista 1</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 126<br>             <b>Faturamento:</b> R$ 538,272<br>             <b>Representante:</b> <span style="color:#a65628">■</span> Representante 6         </div></div>`)[0];
+                popup_4e3d7f3577f7c10b194bb31dde08aba9.setContent(html_c1a3a8c0b513d957765eaf99f3b516ee);
+            
+        
+
+        circle_marker_203c88d13199395f28dc2b6a66041dbb.bindPopup(popup_4e3d7f3577f7c10b194bb31dde08aba9)
+        ;
+
+        
+    
+    
+            circle_marker_203c88d13199395f28dc2b6a66041dbb.bindTooltip(
+                `<div>
+                     FM001 — Alta | Rep: REP06
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_073927395eb78e77ebfc7afc75cfe937 = L.circleMarker(
+                [-23.53051498420535, -46.58201672471464],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_7acd0f33acc87c66369cae88009af6ba = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3ae690130f80adfb29359277c7439736 = $(`<div id="html_3ae690130f80adfb29359277c7439736" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Tatuapé 2</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 94<br>             <b>Faturamento:</b> R$ 370,736<br>             <b>Representante:</b> <span style="color:#66c2a5">■</span> Representante 9         </div></div>`)[0];
+                popup_7acd0f33acc87c66369cae88009af6ba.setContent(html_3ae690130f80adfb29359277c7439736);
+            
+        
+
+        circle_marker_073927395eb78e77ebfc7afc75cfe937.bindPopup(popup_7acd0f33acc87c66369cae88009af6ba)
+        ;
+
+        
+    
+    
+            circle_marker_073927395eb78e77ebfc7afc75cfe937.bindTooltip(
+                `<div>
+                     FM002 — Alta | Rep: REP09
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d9e6dd4cbec31b8b2bf890968130e222 = L.circleMarker(
+                [-23.58588849882568, -46.6666927422204],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_42444eed4ddf2c942eaabd6cb51665d1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_13ec0aad0522b8a8ccf0dc6f53f42d1a = $(`<div id="html_13ec0aad0522b8a8ccf0dc6f53f42d1a" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Berrini 3</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 169<br>             <b>Faturamento:</b> R$ 214,461<br>             <b>Representante:</b> <span style="color:#f781bf">■</span> Representante 7         </div></div>`)[0];
+                popup_42444eed4ddf2c942eaabd6cb51665d1.setContent(html_13ec0aad0522b8a8ccf0dc6f53f42d1a);
+            
+        
+
+        circle_marker_d9e6dd4cbec31b8b2bf890968130e222.bindPopup(popup_42444eed4ddf2c942eaabd6cb51665d1)
+        ;
+
+        
+    
+    
+            circle_marker_d9e6dd4cbec31b8b2bf890968130e222.bindTooltip(
+                `<div>
+                     FM003 — Alta | Rep: REP07
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ae8a1cc377e08633511127643827f0c3 = L.circleMarker(
+                [-23.539100122773316, -46.612144729098425],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_1136426fabbbdcb6b6e875325251e60e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_703a8208d5a618def2a7024cb47e1348 = $(`<div id="html_703a8208d5a618def2a7024cb47e1348" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Paulista 4</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 149<br>             <b>Faturamento:</b> R$ 250,916<br>             <b>Representante:</b> <span style="color:#555555">■</span> Representante 8         </div></div>`)[0];
+                popup_1136426fabbbdcb6b6e875325251e60e.setContent(html_703a8208d5a618def2a7024cb47e1348);
+            
+        
+
+        circle_marker_ae8a1cc377e08633511127643827f0c3.bindPopup(popup_1136426fabbbdcb6b6e875325251e60e)
+        ;
+
+        
+    
+    
+            circle_marker_ae8a1cc377e08633511127643827f0c3.bindTooltip(
+                `<div>
+                     FM004 — Baixa | Rep: REP08
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1eaf5a035a8eaf1da2a8c00f94d82ad1 = L.circleMarker(
+                [-23.517075775704043, -46.62362435683678],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_bac31a8aa6ea22365eda3770f0455023 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ff8858b09d5f8267f72b2c14733e7cfc = $(`<div id="html_ff8858b09d5f8267f72b2c14733e7cfc" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Santana 5</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 108<br>             <b>Faturamento:</b> R$ 105,192<br>             <b>Representante:</b> <span style="color:#984ea3">■</span> Representante 4         </div></div>`)[0];
+                popup_bac31a8aa6ea22365eda3770f0455023.setContent(html_ff8858b09d5f8267f72b2c14733e7cfc);
+            
+        
+
+        circle_marker_1eaf5a035a8eaf1da2a8c00f94d82ad1.bindPopup(popup_bac31a8aa6ea22365eda3770f0455023)
+        ;
+
+        
+    
+    
+            circle_marker_1eaf5a035a8eaf1da2a8c00f94d82ad1.bindTooltip(
+                `<div>
+                     FM005 — Alta | Rep: REP04
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a60ba5e6ac4f234e5815f6508c1cb532 = L.circleMarker(
+                [-23.541814710527763, -46.6379506139348],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_305f7a5204ad8e8cffbdd3978ec9d921 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_08159f37320aa9b76e88fdd435c278bd = $(`<div id="html_08159f37320aa9b76e88fdd435c278bd" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Mooca 6</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 34<br>             <b>Faturamento:</b> R$ 23,426<br>             <b>Representante:</b> <span style="color:#ff7f00">■</span> Representante 5         </div></div>`)[0];
+                popup_305f7a5204ad8e8cffbdd3978ec9d921.setContent(html_08159f37320aa9b76e88fdd435c278bd);
+            
+        
+
+        circle_marker_a60ba5e6ac4f234e5815f6508c1cb532.bindPopup(popup_305f7a5204ad8e8cffbdd3978ec9d921)
+        ;
+
+        
+    
+    
+            circle_marker_a60ba5e6ac4f234e5815f6508c1cb532.bindTooltip(
+                `<div>
+                     FM006 — Media | Rep: REP05
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81bc8a35fd4f22dc3482eac68b28ffae = L.circleMarker(
+                [-23.59143935654672, -46.62146139906669],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_9601b6e77ef5c63cb029f69bf6bcce59 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_df2c68eafc553a4247397eaf379e7a74 = $(`<div id="html_df2c68eafc553a4247397eaf379e7a74" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Centro 7</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 127<br>             <b>Faturamento:</b> R$ 224,409<br>             <b>Representante:</b> <span style="color:#f781bf">■</span> Representante 7         </div></div>`)[0];
+                popup_9601b6e77ef5c63cb029f69bf6bcce59.setContent(html_df2c68eafc553a4247397eaf379e7a74);
+            
+        
+
+        circle_marker_81bc8a35fd4f22dc3482eac68b28ffae.bindPopup(popup_9601b6e77ef5c63cb029f69bf6bcce59)
+        ;
+
+        
+    
+    
+            circle_marker_81bc8a35fd4f22dc3482eac68b28ffae.bindTooltip(
+                `<div>
+                     FM007 — Alta | Rep: REP07
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d43cd37a09a4eacef726cc968b09ed1f = L.circleMarker(
+                [-23.552058543113795, -46.701354958728],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_c90547f4c70af62f2a56c3a4a0638a91 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4896f9825f6d8bf7edc13ae6e378b366 = $(`<div id="html_4896f9825f6d8bf7edc13ae6e378b366" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Paulista 8</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 70<br>             <b>Faturamento:</b> R$ 80,220<br>             <b>Representante:</b> <span style="color:#f781bf">■</span> Representante 7         </div></div>`)[0];
+                popup_c90547f4c70af62f2a56c3a4a0638a91.setContent(html_4896f9825f6d8bf7edc13ae6e378b366);
+            
+        
+
+        circle_marker_d43cd37a09a4eacef726cc968b09ed1f.bindPopup(popup_c90547f4c70af62f2a56c3a4a0638a91)
+        ;
+
+        
+    
+    
+            circle_marker_d43cd37a09a4eacef726cc968b09ed1f.bindTooltip(
+                `<div>
+                     FM008 — Alta | Rep: REP07
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2fc1894d45341c321dad1ec3277b7a36 = L.circleMarker(
+                [-23.62894758763127, -46.73099484070147],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_d03f464cdeab8aa5f7c81e4bac5cf583 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a1634b4686d4b7b3a0244301bc5ef339 = $(`<div id="html_a1634b4686d4b7b3a0244301bc5ef339" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Berrini 9</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 151<br>             <b>Faturamento:</b> R$ 166,100<br>             <b>Representante:</b> <span style="color:#e41a1c">■</span> Representante 1         </div></div>`)[0];
+                popup_d03f464cdeab8aa5f7c81e4bac5cf583.setContent(html_a1634b4686d4b7b3a0244301bc5ef339);
+            
+        
+
+        circle_marker_2fc1894d45341c321dad1ec3277b7a36.bindPopup(popup_d03f464cdeab8aa5f7c81e4bac5cf583)
+        ;
+
+        
+    
+    
+            circle_marker_2fc1894d45341c321dad1ec3277b7a36.bindTooltip(
+                `<div>
+                     FM009 — Baixa | Rep: REP01
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_abfb2106b6c48904816f0447dd4a928e = L.circleMarker(
+                [-23.506436796692544, -46.57106026518836],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_f2c97ebf8b5e8badef6b2ac3897c8b01 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8075549f77ab95b8b4953c76b54cec32 = $(`<div id="html_8075549f77ab95b8b4953c76b54cec32" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Mooca 10</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 28<br>             <b>Faturamento:</b> R$ 87,136<br>             <b>Representante:</b> <span style="color:#377eb8">■</span> Representante 2         </div></div>`)[0];
+                popup_f2c97ebf8b5e8badef6b2ac3897c8b01.setContent(html_8075549f77ab95b8b4953c76b54cec32);
+            
+        
+
+        circle_marker_abfb2106b6c48904816f0447dd4a928e.bindPopup(popup_f2c97ebf8b5e8badef6b2ac3897c8b01)
+        ;
+
+        
+    
+    
+            circle_marker_abfb2106b6c48904816f0447dd4a928e.bindTooltip(
+                `<div>
+                     FM010 — Alta | Rep: REP02
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_96f12a2489621207afd0740f85cb2927 = L.circleMarker(
+                [-23.524410617437784, -46.6519974533974],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_23f37b1e34c8001ab78634a37f0585c4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_adabf311f0897a8fcef3bc854d7b95a5 = $(`<div id="html_adabf311f0897a8fcef3bc854d7b95a5" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Santana 11</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 191<br>             <b>Faturamento:</b> R$ 583,696<br>             <b>Representante:</b> <span style="color:#e41a1c">■</span> Representante 1         </div></div>`)[0];
+                popup_23f37b1e34c8001ab78634a37f0585c4.setContent(html_adabf311f0897a8fcef3bc854d7b95a5);
+            
+        
+
+        circle_marker_96f12a2489621207afd0740f85cb2927.bindPopup(popup_23f37b1e34c8001ab78634a37f0585c4)
+        ;
+
+        
+    
+    
+            circle_marker_96f12a2489621207afd0740f85cb2927.bindTooltip(
+                `<div>
+                     FM011 — Alta | Rep: REP01
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d473f73a281e298412913f9584959e4b = L.circleMarker(
+                [-23.46418050882638, -46.658763534649225],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_3bd353fa1bcb34c66cd16d3cc4420a3f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7db905347cd913755b5a83c580de467c = $(`<div id="html_7db905347cd913755b5a83c580de467c" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Santana 12</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 100<br>             <b>Faturamento:</b> R$ 245,500<br>             <b>Representante:</b> <span style="color:#a65628">■</span> Representante 6         </div></div>`)[0];
+                popup_3bd353fa1bcb34c66cd16d3cc4420a3f.setContent(html_7db905347cd913755b5a83c580de467c);
+            
+        
+
+        circle_marker_d473f73a281e298412913f9584959e4b.bindPopup(popup_3bd353fa1bcb34c66cd16d3cc4420a3f)
+        ;
+
+        
+    
+    
+            circle_marker_d473f73a281e298412913f9584959e4b.bindTooltip(
+                `<div>
+                     FM012 — Media | Rep: REP06
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81a51a05a3f7033ed9c5ba90b582821e = L.circleMarker(
+                [-23.627776391221193, -46.661963858968235],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_0ae031204ac661c92e2c63defb6d75db = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a6ee5845ef61b1f11c1d123f18c774fd = $(`<div id="html_a6ee5845ef61b1f11c1d123f18c774fd" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Berrini 13</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 153<br>             <b>Faturamento:</b> R$ 476,289<br>             <b>Representante:</b> <span style="color:#984ea3">■</span> Representante 4         </div></div>`)[0];
+                popup_0ae031204ac661c92e2c63defb6d75db.setContent(html_a6ee5845ef61b1f11c1d123f18c774fd);
+            
+        
+
+        circle_marker_81a51a05a3f7033ed9c5ba90b582821e.bindPopup(popup_0ae031204ac661c92e2c63defb6d75db)
+        ;
+
+        
+    
+    
+            circle_marker_81a51a05a3f7033ed9c5ba90b582821e.bindTooltip(
+                `<div>
+                     FM013 — Media | Rep: REP04
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4d717dcfebfbe9dba88cb4022fb3702e = L.circleMarker(
+                [-23.548328972065672, -46.63341455444745],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_c3b923bf2fbbacad649e4c6db8736feb = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d962fa6960754ace15b55651f5d7c7ad = $(`<div id="html_d962fa6960754ace15b55651f5d7c7ad" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Mooca 14</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 165<br>             <b>Faturamento:</b> R$ 109,065<br>             <b>Representante:</b> <span style="color:#555555">■</span> Representante 8         </div></div>`)[0];
+                popup_c3b923bf2fbbacad649e4c6db8736feb.setContent(html_d962fa6960754ace15b55651f5d7c7ad);
+            
+        
+
+        circle_marker_4d717dcfebfbe9dba88cb4022fb3702e.bindPopup(popup_c3b923bf2fbbacad649e4c6db8736feb)
+        ;
+
+        
+    
+    
+            circle_marker_4d717dcfebfbe9dba88cb4022fb3702e.bindTooltip(
+                `<div>
+                     FM014 — Media | Rep: REP08
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f616baf0865b22785bc68ef405a9a10b = L.circleMarker(
+                [-23.56098497639982, -46.59063411342062],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_6f45b352060a9ea2b98eedfa726cc370 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ddeb16e905db4ac4769a0d32e25979f4 = $(`<div id="html_ddeb16e905db4ac4769a0d32e25979f4" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Centro 15</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 114<br>             <b>Faturamento:</b> R$ 437,988<br>             <b>Representante:</b> <span style="color:#4daf4a">■</span> Representante 3         </div></div>`)[0];
+                popup_6f45b352060a9ea2b98eedfa726cc370.setContent(html_ddeb16e905db4ac4769a0d32e25979f4);
+            
+        
+
+        circle_marker_f616baf0865b22785bc68ef405a9a10b.bindPopup(popup_6f45b352060a9ea2b98eedfa726cc370)
+        ;
+
+        
+    
+    
+            circle_marker_f616baf0865b22785bc68ef405a9a10b.bindTooltip(
+                `<div>
+                     FM015 — Alta | Rep: REP03
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5d4dd40c07ac7f810624c0d1094d3b49 = L.circleMarker(
+                [-23.49545074979481, -46.563701713758086],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_368b90ccb16afef34fd15db3a41881e7 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_269962edc2199adc47d4d9633a9f27eb = $(`<div id="html_269962edc2199adc47d4d9633a9f27eb" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Guarulhos 16</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 59<br>             <b>Faturamento:</b> R$ 49,383<br>             <b>Representante:</b> <span style="color:#66c2a5">■</span> Representante 9         </div></div>`)[0];
+                popup_368b90ccb16afef34fd15db3a41881e7.setContent(html_269962edc2199adc47d4d9633a9f27eb);
+            
+        
+
+        circle_marker_5d4dd40c07ac7f810624c0d1094d3b49.bindPopup(popup_368b90ccb16afef34fd15db3a41881e7)
+        ;
+
+        
+    
+    
+            circle_marker_5d4dd40c07ac7f810624c0d1094d3b49.bindTooltip(
+                `<div>
+                     FM016 — Media | Rep: REP09
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8f0180dfd71c469947712495773bd9c7 = L.circleMarker(
+                [-23.53623078676109, -46.56792488343361],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_8b61740c0a24a33e6ae3b9ac6e4372b5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9b65f62a75352bada3d8cd601cfffc2f = $(`<div id="html_9b65f62a75352bada3d8cd601cfffc2f" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Tatuapé 17</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 143<br>             <b>Faturamento:</b> R$ 141,856<br>             <b>Representante:</b> <span style="color:#a65628">■</span> Representante 6         </div></div>`)[0];
+                popup_8b61740c0a24a33e6ae3b9ac6e4372b5.setContent(html_9b65f62a75352bada3d8cd601cfffc2f);
+            
+        
+
+        circle_marker_8f0180dfd71c469947712495773bd9c7.bindPopup(popup_8b61740c0a24a33e6ae3b9ac6e4372b5)
+        ;
+
+        
+    
+    
+            circle_marker_8f0180dfd71c469947712495773bd9c7.bindTooltip(
+                `<div>
+                     FM017 — Alta | Rep: REP06
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cf6b17fca8f669ae4a921dca98548dda = L.circleMarker(
+                [-23.631907577502524, -46.657280301924594],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_dfefcf039994da77c81249b4054b9ea9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bd1d6b9f27acb9abaac170844232b873 = $(`<div id="html_bd1d6b9f27acb9abaac170844232b873" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Berrini 18</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 84<br>             <b>Faturamento:</b> R$ 257,712<br>             <b>Representante:</b> <span style="color:#fc8d62">■</span> Representante 10         </div></div>`)[0];
+                popup_dfefcf039994da77c81249b4054b9ea9.setContent(html_bd1d6b9f27acb9abaac170844232b873);
+            
+        
+
+        circle_marker_cf6b17fca8f669ae4a921dca98548dda.bindPopup(popup_dfefcf039994da77c81249b4054b9ea9)
+        ;
+
+        
+    
+    
+            circle_marker_cf6b17fca8f669ae4a921dca98548dda.bindTooltip(
+                `<div>
+                     FM018 — Media | Rep: REP10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_69f1c70bc0a97bc21a87fd432196dd72 = L.circleMarker(
+                [-23.534075523070335, -46.68612843184658],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_6d3eedf4d4f852f7fdf310cc2b5fbe8c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_51965c5651c4b493dc6a0488b4c9311c = $(`<div id="html_51965c5651c4b493dc6a0488b4c9311c" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Paulista 19</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 82<br>             <b>Faturamento:</b> R$ 73,062<br>             <b>Representante:</b> <span style="color:#a65628">■</span> Representante 6         </div></div>`)[0];
+                popup_6d3eedf4d4f852f7fdf310cc2b5fbe8c.setContent(html_51965c5651c4b493dc6a0488b4c9311c);
+            
+        
+
+        circle_marker_69f1c70bc0a97bc21a87fd432196dd72.bindPopup(popup_6d3eedf4d4f852f7fdf310cc2b5fbe8c)
+        ;
+
+        
+    
+    
+            circle_marker_69f1c70bc0a97bc21a87fd432196dd72.bindTooltip(
+                `<div>
+                     FM019 — Alta | Rep: REP06
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_97638604ecb6444c839ff97455cd0d20 = L.circleMarker(
+                [-23.4313992831959, -46.5061729653314],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_1f3557bd6c1aeed97ea807e76ad2d78c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_69ae801d0c68873bf49473eabdae3ecf = $(`<div id="html_69ae801d0c68873bf49473eabdae3ecf" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Guarulhos 20</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 24<br>             <b>Faturamento:</b> R$ 97,464<br>             <b>Representante:</b> <span style="color:#f781bf">■</span> Representante 7         </div></div>`)[0];
+                popup_1f3557bd6c1aeed97ea807e76ad2d78c.setContent(html_69ae801d0c68873bf49473eabdae3ecf);
+            
+        
+
+        circle_marker_97638604ecb6444c839ff97455cd0d20.bindPopup(popup_1f3557bd6c1aeed97ea807e76ad2d78c)
+        ;
+
+        
+    
+    
+            circle_marker_97638604ecb6444c839ff97455cd0d20.bindTooltip(
+                `<div>
+                     FM020 — Alta | Rep: REP07
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6633a33aba4936443038890e207cc933 = L.circleMarker(
+                [-23.677053427145573, -46.56641309404748],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_d33d8021a88c2b8a0c3ffaa4d2dbf488 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_eb24b68e56336ae839e8a344880e3f49 = $(`<div id="html_eb24b68e56336ae839e8a344880e3f49" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Santo André 21</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 154<br>             <b>Faturamento:</b> R$ 107,800<br>             <b>Representante:</b> <span style="color:#f781bf">■</span> Representante 7         </div></div>`)[0];
+                popup_d33d8021a88c2b8a0c3ffaa4d2dbf488.setContent(html_eb24b68e56336ae839e8a344880e3f49);
+            
+        
+
+        circle_marker_6633a33aba4936443038890e207cc933.bindPopup(popup_d33d8021a88c2b8a0c3ffaa4d2dbf488)
+        ;
+
+        
+    
+    
+            circle_marker_6633a33aba4936443038890e207cc933.bindTooltip(
+                `<div>
+                     FM021 — Media | Rep: REP07
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8a2b9f6738629bed37d080f5514895ed = L.circleMarker(
+                [-23.540670187317247, -46.61881019751473],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_b7f62bcb77d9dce3671979adcc0a4928 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1c1265dc42ce8d6ee2b4fbefb3d6c738 = $(`<div id="html_1c1265dc42ce8d6ee2b4fbefb3d6c738" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Mooca 22</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 67<br>             <b>Faturamento:</b> R$ 197,918<br>             <b>Representante:</b> <span style="color:#ff7f00">■</span> Representante 5         </div></div>`)[0];
+                popup_b7f62bcb77d9dce3671979adcc0a4928.setContent(html_1c1265dc42ce8d6ee2b4fbefb3d6c738);
+            
+        
+
+        circle_marker_8a2b9f6738629bed37d080f5514895ed.bindPopup(popup_b7f62bcb77d9dce3671979adcc0a4928)
+        ;
+
+        
+    
+    
+            circle_marker_8a2b9f6738629bed37d080f5514895ed.bindTooltip(
+                `<div>
+                     FM022 — Media | Rep: REP05
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0fb9d048ccce1674e24011882973dc68 = L.circleMarker(
+                [-23.533615874733638, -46.61670776433825],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_c1a19be2cf5830153f9c9f6dfc8ae511 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_95e615223feee51065f8f094021109ce = $(`<div id="html_95e615223feee51065f8f094021109ce" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Centro 23</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 191<br>             <b>Faturamento:</b> R$ 625,143<br>             <b>Representante:</b> <span style="color:#ff7f00">■</span> Representante 5         </div></div>`)[0];
+                popup_c1a19be2cf5830153f9c9f6dfc8ae511.setContent(html_95e615223feee51065f8f094021109ce);
+            
+        
+
+        circle_marker_0fb9d048ccce1674e24011882973dc68.bindPopup(popup_c1a19be2cf5830153f9c9f6dfc8ae511)
+        ;
+
+        
+    
+    
+            circle_marker_0fb9d048ccce1674e24011882973dc68.bindTooltip(
+                `<div>
+                     FM023 — Baixa | Rep: REP05
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_609efe3028b9445b11d159b6963bd92d = L.circleMarker(
+                [-23.493778725742366, -46.7946785074838],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_dc30e00fb996baba3ae1aa3fe92bb81b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9be06d10c9e335e536ec146fc7dab449 = $(`<div id="html_9be06d10c9e335e536ec146fc7dab449" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Osasco 24</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 120<br>             <b>Faturamento:</b> R$ 382,800<br>             <b>Representante:</b> <span style="color:#4daf4a">■</span> Representante 3         </div></div>`)[0];
+                popup_dc30e00fb996baba3ae1aa3fe92bb81b.setContent(html_9be06d10c9e335e536ec146fc7dab449);
+            
+        
+
+        circle_marker_609efe3028b9445b11d159b6963bd92d.bindPopup(popup_dc30e00fb996baba3ae1aa3fe92bb81b)
+        ;
+
+        
+    
+    
+            circle_marker_609efe3028b9445b11d159b6963bd92d.bindTooltip(
+                `<div>
+                     FM024 — Baixa | Rep: REP03
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_94dce3ac251bd314292d67fa989301d6 = L.circleMarker(
+                [-23.53522149513831, -46.64987228024305],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_cc6a6bed81a768c8f3579cd761769499 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f4d6d82a42554e4ce096f708f9d480a1 = $(`<div id="html_f4d6d82a42554e4ce096f708f9d480a1" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Paulista 25</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 161<br>             <b>Faturamento:</b> R$ 220,570<br>             <b>Representante:</b> <span style="color:#fc8d62">■</span> Representante 10         </div></div>`)[0];
+                popup_cc6a6bed81a768c8f3579cd761769499.setContent(html_f4d6d82a42554e4ce096f708f9d480a1);
+            
+        
+
+        circle_marker_94dce3ac251bd314292d67fa989301d6.bindPopup(popup_cc6a6bed81a768c8f3579cd761769499)
+        ;
+
+        
+    
+    
+            circle_marker_94dce3ac251bd314292d67fa989301d6.bindTooltip(
+                `<div>
+                     FM025 — Media | Rep: REP10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_396925f39aae40a2af42896d6709c6c3 = L.circleMarker(
+                [-23.607256641046156, -46.63493371103142],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_1609d215cb303035e57b89ada490d690 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a0b6280e124975cc4bd04997defe294c = $(`<div id="html_a0b6280e124975cc4bd04997defe294c" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Paulista 26</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 109<br>             <b>Faturamento:</b> R$ 216,256<br>             <b>Representante:</b> <span style="color:#377eb8">■</span> Representante 2         </div></div>`)[0];
+                popup_1609d215cb303035e57b89ada490d690.setContent(html_a0b6280e124975cc4bd04997defe294c);
+            
+        
+
+        circle_marker_396925f39aae40a2af42896d6709c6c3.bindPopup(popup_1609d215cb303035e57b89ada490d690)
+        ;
+
+        
+    
+    
+            circle_marker_396925f39aae40a2af42896d6709c6c3.bindTooltip(
+                `<div>
+                     FM026 — Baixa | Rep: REP02
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db60f2bb74b03fdd4f68b21d6fabdfe9 = L.circleMarker(
+                [-23.57002807976646, -46.53702364043265],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_7ab43741baf121b57807241c06c936b7 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_551f0b85982f9c15bb2008fcea1e1a77 = $(`<div id="html_551f0b85982f9c15bb2008fcea1e1a77" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Tatuapé 27</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 71<br>             <b>Faturamento:</b> R$ 333,061<br>             <b>Representante:</b> <span style="color:#4daf4a">■</span> Representante 3         </div></div>`)[0];
+                popup_7ab43741baf121b57807241c06c936b7.setContent(html_551f0b85982f9c15bb2008fcea1e1a77);
+            
+        
+
+        circle_marker_db60f2bb74b03fdd4f68b21d6fabdfe9.bindPopup(popup_7ab43741baf121b57807241c06c936b7)
+        ;
+
+        
+    
+    
+            circle_marker_db60f2bb74b03fdd4f68b21d6fabdfe9.bindTooltip(
+                `<div>
+                     FM027 — Baixa | Rep: REP03
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0ee283a4bde6132c168dbdf1fc135393 = L.circleMarker(
+                [-23.53344839135739, -46.637966854559416],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_109fd4874fda61a17edebf4149a68fb2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b5ab61da7a6d62894b2abc880d8b1bb8 = $(`<div id="html_b5ab61da7a6d62894b2abc880d8b1bb8" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Mooca 28</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 162<br>             <b>Faturamento:</b> R$ 606,204<br>             <b>Representante:</b> <span style="color:#4daf4a">■</span> Representante 3         </div></div>`)[0];
+                popup_109fd4874fda61a17edebf4149a68fb2.setContent(html_b5ab61da7a6d62894b2abc880d8b1bb8);
+            
+        
+
+        circle_marker_0ee283a4bde6132c168dbdf1fc135393.bindPopup(popup_109fd4874fda61a17edebf4149a68fb2)
+        ;
+
+        
+    
+    
+            circle_marker_0ee283a4bde6132c168dbdf1fc135393.bindTooltip(
+                `<div>
+                     FM028 — Media | Rep: REP03
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d06714679694ecb5a464d115ce771860 = L.circleMarker(
+                [-23.582693877526523, -46.5576146429442],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_f3c3a4c58279b25c2a8e1dd1cd9b7221 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9b4ebc14ba0668273195fe2c43748d7a = $(`<div id="html_9b4ebc14ba0668273195fe2c43748d7a" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Mooca 29</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 90<br>             <b>Faturamento:</b> R$ 199,980<br>             <b>Representante:</b> <span style="color:#fc8d62">■</span> Representante 10         </div></div>`)[0];
+                popup_f3c3a4c58279b25c2a8e1dd1cd9b7221.setContent(html_9b4ebc14ba0668273195fe2c43748d7a);
+            
+        
+
+        circle_marker_d06714679694ecb5a464d115ce771860.bindPopup(popup_f3c3a4c58279b25c2a8e1dd1cd9b7221)
+        ;
+
+        
+    
+    
+            circle_marker_d06714679694ecb5a464d115ce771860.bindTooltip(
+                `<div>
+                     FM029 — Alta | Rep: REP10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2636a62280ff8328a44cb8ed1933dc89 = L.circleMarker(
+                [-23.541821506696028, -46.61795321609847],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_a8feebd490bcaf514ea1ca6a1618f5d2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_146a1d3fc5414036579bb245b03373aa = $(`<div id="html_146a1d3fc5414036579bb245b03373aa" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Paulista 30</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 189<br>             <b>Faturamento:</b> R$ 396,333<br>             <b>Representante:</b> <span style="color:#e41a1c">■</span> Representante 1         </div></div>`)[0];
+                popup_a8feebd490bcaf514ea1ca6a1618f5d2.setContent(html_146a1d3fc5414036579bb245b03373aa);
+            
+        
+
+        circle_marker_2636a62280ff8328a44cb8ed1933dc89.bindPopup(popup_a8feebd490bcaf514ea1ca6a1618f5d2)
+        ;
+
+        
+    
+    
+            circle_marker_2636a62280ff8328a44cb8ed1933dc89.bindTooltip(
+                `<div>
+                     FM030 — Alta | Rep: REP01
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c39810926029b902fce0307c38b0624e = L.circleMarker(
+                [-23.582659624348956, -46.650353940981226],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_631c39e6b733d6259c2c7af0ee61e944 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3d7fed92e1ae108a826af3a98a3e2ea9 = $(`<div id="html_3d7fed92e1ae108a826af3a98a3e2ea9" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Berrini 31</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 47<br>             <b>Faturamento:</b> R$ 193,969<br>             <b>Representante:</b> <span style="color:#377eb8">■</span> Representante 2         </div></div>`)[0];
+                popup_631c39e6b733d6259c2c7af0ee61e944.setContent(html_3d7fed92e1ae108a826af3a98a3e2ea9);
+            
+        
+
+        circle_marker_c39810926029b902fce0307c38b0624e.bindPopup(popup_631c39e6b733d6259c2c7af0ee61e944)
+        ;
+
+        
+    
+    
+            circle_marker_c39810926029b902fce0307c38b0624e.bindTooltip(
+                `<div>
+                     FM031 — Media | Rep: REP02
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_607217ba9216e82fe3c17d75f6a6f077 = L.circleMarker(
+                [-23.569649005212963, -46.61767197410811],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_d5c63bd9accec0aa1f8e3c154c8083e4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d5062ad81af5d7af1684b3dc5f565dde = $(`<div id="html_d5062ad81af5d7af1684b3dc5f565dde" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Paulista 32</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 147<br>             <b>Faturamento:</b> R$ 298,263<br>             <b>Representante:</b> <span style="color:#377eb8">■</span> Representante 2         </div></div>`)[0];
+                popup_d5c63bd9accec0aa1f8e3c154c8083e4.setContent(html_d5062ad81af5d7af1684b3dc5f565dde);
+            
+        
+
+        circle_marker_607217ba9216e82fe3c17d75f6a6f077.bindPopup(popup_d5c63bd9accec0aa1f8e3c154c8083e4)
+        ;
+
+        
+    
+    
+            circle_marker_607217ba9216e82fe3c17d75f6a6f077.bindTooltip(
+                `<div>
+                     FM032 — Alta | Rep: REP02
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_02ca419059a6c42625e4d02d69255323 = L.circleMarker(
+                [-23.59909120452993, -46.6703702161923],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_fb4b56a561eb58e843ad5ba2bd3fd627 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ff21a4a5febd2b760ebc01b46ea36914 = $(`<div id="html_ff21a4a5febd2b760ebc01b46ea36914" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Paulista 33</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 148<br>             <b>Faturamento:</b> R$ 267,288<br>             <b>Representante:</b> <span style="color:#555555">■</span> Representante 8         </div></div>`)[0];
+                popup_fb4b56a561eb58e843ad5ba2bd3fd627.setContent(html_ff21a4a5febd2b760ebc01b46ea36914);
+            
+        
+
+        circle_marker_02ca419059a6c42625e4d02d69255323.bindPopup(popup_fb4b56a561eb58e843ad5ba2bd3fd627)
+        ;
+
+        
+    
+    
+            circle_marker_02ca419059a6c42625e4d02d69255323.bindTooltip(
+                `<div>
+                     FM033 — Media | Rep: REP08
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8f004746a6dd463160b56ba7fee9b331 = L.circleMarker(
+                [-23.547489221137372, -46.54479852340775],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_fb89ae3a7c6061ccbf30801cd03ce83b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_cc31205db324a8464a92c07a5632fe70 = $(`<div id="html_cc31205db324a8464a92c07a5632fe70" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Tatuapé 34</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 22<br>             <b>Faturamento:</b> R$ 26,598<br>             <b>Representante:</b> <span style="color:#e41a1c">■</span> Representante 1         </div></div>`)[0];
+                popup_fb89ae3a7c6061ccbf30801cd03ce83b.setContent(html_cc31205db324a8464a92c07a5632fe70);
+            
+        
+
+        circle_marker_8f004746a6dd463160b56ba7fee9b331.bindPopup(popup_fb89ae3a7c6061ccbf30801cd03ce83b)
+        ;
+
+        
+    
+    
+            circle_marker_8f004746a6dd463160b56ba7fee9b331.bindTooltip(
+                `<div>
+                     FM034 — Media | Rep: REP01
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_958bef0774401abde70a024378ef8d3f = L.circleMarker(
+                [-23.661825269742245, -46.53625889968512],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_86eb4b5f2a30fe837eb2d7d10238ced7 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3204f78a442d3afe4a7f8325682537a8 = $(`<div id="html_3204f78a442d3afe4a7f8325682537a8" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Santo André 35</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 184<br>             <b>Faturamento:</b> R$ 213,992<br>             <b>Representante:</b> <span style="color:#fc8d62">■</span> Representante 10         </div></div>`)[0];
+                popup_86eb4b5f2a30fe837eb2d7d10238ced7.setContent(html_3204f78a442d3afe4a7f8325682537a8);
+            
+        
+
+        circle_marker_958bef0774401abde70a024378ef8d3f.bindPopup(popup_86eb4b5f2a30fe837eb2d7d10238ced7)
+        ;
+
+        
+    
+    
+            circle_marker_958bef0774401abde70a024378ef8d3f.bindTooltip(
+                `<div>
+                     FM035 — Alta | Rep: REP10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eb335470684164a986e13a468c0b1601 = L.circleMarker(
+                [-23.61860902960875, -46.54567970679793],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_3accd6af7d147ba815f33e2dc5cb9882 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5c92746c299a718defeca5df81c05554 = $(`<div id="html_5c92746c299a718defeca5df81c05554" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Santo André 36</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 115<br>             <b>Faturamento:</b> R$ 229,425<br>             <b>Representante:</b> <span style="color:#555555">■</span> Representante 8         </div></div>`)[0];
+                popup_3accd6af7d147ba815f33e2dc5cb9882.setContent(html_5c92746c299a718defeca5df81c05554);
+            
+        
+
+        circle_marker_eb335470684164a986e13a468c0b1601.bindPopup(popup_3accd6af7d147ba815f33e2dc5cb9882)
+        ;
+
+        
+    
+    
+            circle_marker_eb335470684164a986e13a468c0b1601.bindTooltip(
+                `<div>
+                     FM036 — Media | Rep: REP08
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0b2ada1b7b83fa3caaee3f2e7b2636d7 = L.circleMarker(
+                [-23.575698104110483, -46.701137039762074],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_504fcfec9d2a5de8cdaec2e2a41db57a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7b74ac8de6302abc0683138bba87bf17 = $(`<div id="html_7b74ac8de6302abc0683138bba87bf17" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Berrini 37</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 71<br>             <b>Faturamento:</b> R$ 127,161<br>             <b>Representante:</b> <span style="color:#984ea3">■</span> Representante 4         </div></div>`)[0];
+                popup_504fcfec9d2a5de8cdaec2e2a41db57a.setContent(html_7b74ac8de6302abc0683138bba87bf17);
+            
+        
+
+        circle_marker_0b2ada1b7b83fa3caaee3f2e7b2636d7.bindPopup(popup_504fcfec9d2a5de8cdaec2e2a41db57a)
+        ;
+
+        
+    
+    
+            circle_marker_0b2ada1b7b83fa3caaee3f2e7b2636d7.bindTooltip(
+                `<div>
+                     FM037 — Baixa | Rep: REP04
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ffc2ee086df627370525c5e251025b3 = L.circleMarker(
+                [-23.565021770417463, -46.57687514941076],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_2689c5f4a537d976c8668045a7fddf50 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5abe6120d721c96f93847f738b344caf = $(`<div id="html_5abe6120d721c96f93847f738b344caf" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Tatuapé 38</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 132<br>             <b>Faturamento:</b> R$ 281,952<br>             <b>Representante:</b> <span style="color:#377eb8">■</span> Representante 2         </div></div>`)[0];
+                popup_2689c5f4a537d976c8668045a7fddf50.setContent(html_5abe6120d721c96f93847f738b344caf);
+            
+        
+
+        circle_marker_4ffc2ee086df627370525c5e251025b3.bindPopup(popup_2689c5f4a537d976c8668045a7fddf50)
+        ;
+
+        
+    
+    
+            circle_marker_4ffc2ee086df627370525c5e251025b3.bindTooltip(
+                `<div>
+                     FM038 — Baixa | Rep: REP02
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cf7151a2b7db30205912042cb3cf1157 = L.circleMarker(
+                [-23.582815950562253, -46.702311305264544],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_2cfe37d6dac5dc917a8a3f77fe85ea8c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_2a06f3789ad733a6758457e80f69d823 = $(`<div id="html_2a06f3789ad733a6758457e80f69d823" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Paulista 39</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 132<br>             <b>Faturamento:</b> R$ 606,804<br>             <b>Representante:</b> <span style="color:#555555">■</span> Representante 8         </div></div>`)[0];
+                popup_2cfe37d6dac5dc917a8a3f77fe85ea8c.setContent(html_2a06f3789ad733a6758457e80f69d823);
+            
+        
+
+        circle_marker_cf7151a2b7db30205912042cb3cf1157.bindPopup(popup_2cfe37d6dac5dc917a8a3f77fe85ea8c)
+        ;
+
+        
+    
+    
+            circle_marker_cf7151a2b7db30205912042cb3cf1157.bindTooltip(
+                `<div>
+                     FM039 — Baixa | Rep: REP08
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9779fb06b985f17f52ef15ee3a28a058 = L.circleMarker(
+                [-23.576032097677114, -46.732052124875],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_189dd3ca38e6b271e6b36535af8a4b7f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9b758bbe6975473a7571d7eefca7a2c2 = $(`<div id="html_9b758bbe6975473a7571d7eefca7a2c2" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Faria Lima 40</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 148<br>             <b>Faturamento:</b> R$ 588,152<br>             <b>Representante:</b> <span style="color:#ff7f00">■</span> Representante 5         </div></div>`)[0];
+                popup_189dd3ca38e6b271e6b36535af8a4b7f.setContent(html_9b758bbe6975473a7571d7eefca7a2c2);
+            
+        
+
+        circle_marker_9779fb06b985f17f52ef15ee3a28a058.bindPopup(popup_189dd3ca38e6b271e6b36535af8a4b7f)
+        ;
+
+        
+    
+    
+            circle_marker_9779fb06b985f17f52ef15ee3a28a058.bindTooltip(
+                `<div>
+                     FM040 — Baixa | Rep: REP05
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3a83464534855f70557b3249a457f9a6 = L.circleMarker(
+                [-23.577929454844522, -46.68440654166829],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_f99d58286cc39593241668118f69b8b5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1dcae874235b5148af2461122e184335 = $(`<div id="html_1dcae874235b5148af2461122e184335" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Berrini 41</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 179<br>             <b>Faturamento:</b> R$ 399,707<br>             <b>Representante:</b> <span style="color:#66c2a5">■</span> Representante 9         </div></div>`)[0];
+                popup_f99d58286cc39593241668118f69b8b5.setContent(html_1dcae874235b5148af2461122e184335);
+            
+        
+
+        circle_marker_3a83464534855f70557b3249a457f9a6.bindPopup(popup_f99d58286cc39593241668118f69b8b5)
+        ;
+
+        
+    
+    
+            circle_marker_3a83464534855f70557b3249a457f9a6.bindTooltip(
+                `<div>
+                     FM041 — Alta | Rep: REP09
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_380fb817c9eba5d11df26395fa024d59 = L.circleMarker(
+                [-23.55829447284885, -46.77468644525941],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_c16c1475493f92cc8de3471d92b83ad5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5a7bd5e91ccf306d60e22390a6bc8df1 = $(`<div id="html_5a7bd5e91ccf306d60e22390a6bc8df1" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Osasco 42</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 142<br>             <b>Faturamento:</b> R$ 709,432<br>             <b>Representante:</b> <span style="color:#a65628">■</span> Representante 6         </div></div>`)[0];
+                popup_c16c1475493f92cc8de3471d92b83ad5.setContent(html_5a7bd5e91ccf306d60e22390a6bc8df1);
+            
+        
+
+        circle_marker_380fb817c9eba5d11df26395fa024d59.bindPopup(popup_c16c1475493f92cc8de3471d92b83ad5)
+        ;
+
+        
+    
+    
+            circle_marker_380fb817c9eba5d11df26395fa024d59.bindTooltip(
+                `<div>
+                     FM042 — Media | Rep: REP06
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_36c936bc15b6c267ed4cc1afe5e07afa = L.circleMarker(
+                [-23.517378365138814, -46.58982168672807],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_347048d3a74e080aeb21e6285b79d0c7 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_44bdb0988e9006cd39e3d636423edd7d = $(`<div id="html_44bdb0988e9006cd39e3d636423edd7d" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Tatuapé 43</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 135<br>             <b>Faturamento:</b> R$ 94,095<br>             <b>Representante:</b> <span style="color:#984ea3">■</span> Representante 4         </div></div>`)[0];
+                popup_347048d3a74e080aeb21e6285b79d0c7.setContent(html_44bdb0988e9006cd39e3d636423edd7d);
+            
+        
+
+        circle_marker_36c936bc15b6c267ed4cc1afe5e07afa.bindPopup(popup_347048d3a74e080aeb21e6285b79d0c7)
+        ;
+
+        
+    
+    
+            circle_marker_36c936bc15b6c267ed4cc1afe5e07afa.bindTooltip(
+                `<div>
+                     FM043 — Baixa | Rep: REP04
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f95df26b4b6c674649eeed7a643dc0aa = L.circleMarker(
+                [-23.507617555755544, -46.59445681267806],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_859c28f8e3061f0b429ad982a7528f35 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1860bf59be68de722dfef8a3589f5ae8 = $(`<div id="html_1860bf59be68de722dfef8a3589f5ae8" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Santana 44</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 163<br>             <b>Faturamento:</b> R$ 180,604<br>             <b>Representante:</b> <span style="color:#984ea3">■</span> Representante 4         </div></div>`)[0];
+                popup_859c28f8e3061f0b429ad982a7528f35.setContent(html_1860bf59be68de722dfef8a3589f5ae8);
+            
+        
+
+        circle_marker_f95df26b4b6c674649eeed7a643dc0aa.bindPopup(popup_859c28f8e3061f0b429ad982a7528f35)
+        ;
+
+        
+    
+    
+            circle_marker_f95df26b4b6c674649eeed7a643dc0aa.bindTooltip(
+                `<div>
+                     FM044 — Alta | Rep: REP04
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_88635ec028601d2f8d1dbffba68e5eb8 = L.circleMarker(
+                [-23.697828245603457, -46.52718012232593],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_e21fb66ffca7ef126a9a5a4c887e2d38 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_281127d2831ca1462d02c2e39a191007 = $(`<div id="html_281127d2831ca1462d02c2e39a191007" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Santo André 45</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 112<br>             <b>Faturamento:</b> R$ 256,928<br>             <b>Representante:</b> <span style="color:#e41a1c">■</span> Representante 1         </div></div>`)[0];
+                popup_e21fb66ffca7ef126a9a5a4c887e2d38.setContent(html_281127d2831ca1462d02c2e39a191007);
+            
+        
+
+        circle_marker_88635ec028601d2f8d1dbffba68e5eb8.bindPopup(popup_e21fb66ffca7ef126a9a5a4c887e2d38)
+        ;
+
+        
+    
+    
+            circle_marker_88635ec028601d2f8d1dbffba68e5eb8.bindTooltip(
+                `<div>
+                     FM045 — Alta | Rep: REP01
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8424d2ff0741f8e57dfa4620315ce31c = L.circleMarker(
+                [-23.586910705681177, -46.66974356381577],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_9c821ec68f481a19a98fe04f08ab6a32 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_920322b8f8336d37ae81a418f63a93d3 = $(`<div id="html_920322b8f8336d37ae81a418f63a93d3" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Berrini 46</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 166<br>             <b>Faturamento:</b> R$ 310,254<br>             <b>Representante:</b> <span style="color:#fc8d62">■</span> Representante 10         </div></div>`)[0];
+                popup_9c821ec68f481a19a98fe04f08ab6a32.setContent(html_920322b8f8336d37ae81a418f63a93d3);
+            
+        
+
+        circle_marker_8424d2ff0741f8e57dfa4620315ce31c.bindPopup(popup_9c821ec68f481a19a98fe04f08ab6a32)
+        ;
+
+        
+    
+    
+            circle_marker_8424d2ff0741f8e57dfa4620315ce31c.bindTooltip(
+                `<div>
+                     FM046 — Alta | Rep: REP10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ebf1cebe69d674e91019a27a393ce002 = L.circleMarker(
+                [-23.661690694170073, -46.5553504224802],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_d1ff54c58f68d0ee0e9007d881780827 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4046a35acf470150882d3be23fefc2e2 = $(`<div id="html_4046a35acf470150882d3be23fefc2e2" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🟠 Farmácia Santo André 47</b><hr style="margin:4px 0">             <b>Prioridade:</b> Media<br>             <b>Pedidos/mês:</b> 115<br>             <b>Faturamento:</b> R$ 256,910<br>             <b>Representante:</b> <span style="color:#66c2a5">■</span> Representante 9         </div></div>`)[0];
+                popup_d1ff54c58f68d0ee0e9007d881780827.setContent(html_4046a35acf470150882d3be23fefc2e2);
+            
+        
+
+        circle_marker_ebf1cebe69d674e91019a27a393ce002.bindPopup(popup_d1ff54c58f68d0ee0e9007d881780827)
+        ;
+
+        
+    
+    
+            circle_marker_ebf1cebe69d674e91019a27a393ce002.bindTooltip(
+                `<div>
+                     FM047 — Media | Rep: REP09
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ef22cf623dfa6d9383ff22250657985 = L.circleMarker(
+                [-23.5727633570995, -46.55750622618975],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_bcd40e319e6332cb77a510cbc8e200a6 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_53ccd82c126fb1084a62d072b49f5b6a = $(`<div id="html_53ccd82c126fb1084a62d072b49f5b6a" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Tatuapé 48</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 147<br>             <b>Faturamento:</b> R$ 424,095<br>             <b>Representante:</b> <span style="color:#4daf4a">■</span> Representante 3         </div></div>`)[0];
+                popup_bcd40e319e6332cb77a510cbc8e200a6.setContent(html_53ccd82c126fb1084a62d072b49f5b6a);
+            
+        
+
+        circle_marker_3ef22cf623dfa6d9383ff22250657985.bindPopup(popup_bcd40e319e6332cb77a510cbc8e200a6)
+        ;
+
+        
+    
+    
+            circle_marker_3ef22cf623dfa6d9383ff22250657985.bindTooltip(
+                `<div>
+                     FM048 — Alta | Rep: REP03
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9ccbfde23408674047abaac873866f70 = L.circleMarker(
+                [-23.562228989409267, -46.66993098829607],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_3b80f56ed2b8e53a740ae7f5763aeb70 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_046856bea29999e86794e9f42a798e69 = $(`<div id="html_046856bea29999e86794e9f42a798e69" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔵 Farmácia Berrini 49</b><hr style="margin:4px 0">             <b>Prioridade:</b> Baixa<br>             <b>Pedidos/mês:</b> 197<br>             <b>Faturamento:</b> R$ 898,517<br>             <b>Representante:</b> <span style="color:#ff7f00">■</span> Representante 5         </div></div>`)[0];
+                popup_3b80f56ed2b8e53a740ae7f5763aeb70.setContent(html_046856bea29999e86794e9f42a798e69);
+            
+        
+
+        circle_marker_9ccbfde23408674047abaac873866f70.bindPopup(popup_3b80f56ed2b8e53a740ae7f5763aeb70)
+        ;
+
+        
+    
+    
+            circle_marker_9ccbfde23408674047abaac873866f70.bindTooltip(
+                `<div>
+                     FM049 — Baixa | Rep: REP05
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_604148d0361076b50090a1384aa4b130 = L.circleMarker(
+                [-23.64332156006549, -46.55514499782027],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+        var popup_8d434429b50b4b7afebfe676f5ee9551 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7cba0b275e526a7adbe0f027d6eca0e1 = $(`<div id="html_7cba0b275e526a7adbe0f027d6eca0e1" style="width: 100.0%; height: 100.0%;">         <div style="font-family:Arial;font-size:13px;min-width:200px;">             <b>🔴 Farmácia Santo André 50</b><hr style="margin:4px 0">             <b>Prioridade:</b> Alta<br>             <b>Pedidos/mês:</b> 163<br>             <b>Faturamento:</b> R$ 183,049<br>             <b>Representante:</b> <span style="color:#66c2a5">■</span> Representante 9         </div></div>`)[0];
+                popup_8d434429b50b4b7afebfe676f5ee9551.setContent(html_7cba0b275e526a7adbe0f027d6eca0e1);
+            
+        
+
+        circle_marker_604148d0361076b50090a1384aa4b130.bindPopup(popup_8d434429b50b4b7afebfe676f5ee9551)
+        ;
+
+        
+    
+    
+            circle_marker_604148d0361076b50090a1384aa4b130.bindTooltip(
+                `<div>
+                     FM050 — Alta | Rep: REP09
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e9e1fb61651f9762a7fd344614c4e8ab = L.polyline(
+                [[-23.53029196753602, -46.79071397686576], [-23.697828245603457, -46.52718012232593], [-23.547489221137372, -46.54479852340775], [-23.541821506696028, -46.61795321609847], [-23.524410617437784, -46.6519974533974], [-23.62894758763127, -46.73099484070147], [-23.53029196753602, -46.79071397686576]],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#e41a1c", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_e9e1fb61651f9762a7fd344614c4e8ab.bindTooltip(
+                `<div>
+                     Representante 1 | Distância: 87.6 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_56df8d7ed8b4c625670aaa1a3ced073d = L.marker(
+                [-23.53029196753602, -46.79071397686576],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_e2ec0c0f9ca894c3afb559e45808c25b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5e77fdbbb838230f0cbe28805d556520 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_02a1fa418a0a5099c5919462f43e7843 = $(`<div id="html_02a1fa418a0a5099c5919462f43e7843" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 1</b><br>Distância total: <b>87.6 km</b></div>`)[0];
+                popup_5e77fdbbb838230f0cbe28805d556520.setContent(html_02a1fa418a0a5099c5919462f43e7843);
+            
+        
+
+        marker_56df8d7ed8b4c625670aaa1a3ced073d.bindPopup(popup_5e77fdbbb838230f0cbe28805d556520)
+        ;
+
+        
+    
+    
+            marker_56df8d7ed8b4c625670aaa1a3ced073d.bindTooltip(
+                `<div>
+                     Base: Representante 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_56df8d7ed8b4c625670aaa1a3ced073d.setIcon(icon_e2ec0c0f9ca894c3afb559e45808c25b);
+            
+    
+            var poly_line_04532d65e7fd05cc701bf9de6305c118 = L.polyline(
+                [[-23.46462590836398, -46.54957588928776], [-23.569649005212963, -46.61767197410811], [-23.607256641046156, -46.63493371103142], [-23.506436796692544, -46.57106026518836], [-23.565021770417463, -46.57687514941076], [-23.582659624348956, -46.650353940981226], [-23.46462590836398, -46.54957588928776]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_04532d65e7fd05cc701bf9de6305c118.bindTooltip(
+                `<div>
+                     Representante 2 | Distância: 62.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_043916d4bce9c75c9c358ba44e1bc4d9 = L.marker(
+                [-23.46462590836398, -46.54957588928776],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_cce0da3513ba3207173e994f1a42af52 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_906111c0676b9d4a97f00052ed89505c = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_f4451192e8cd68554788494b3ac620c6 = $(`<div id="html_f4451192e8cd68554788494b3ac620c6" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 2</b><br>Distância total: <b>62.0 km</b></div>`)[0];
+                popup_906111c0676b9d4a97f00052ed89505c.setContent(html_f4451192e8cd68554788494b3ac620c6);
+            
+        
+
+        marker_043916d4bce9c75c9c358ba44e1bc4d9.bindPopup(popup_906111c0676b9d4a97f00052ed89505c)
+        ;
+
+        
+    
+    
+            marker_043916d4bce9c75c9c358ba44e1bc4d9.bindTooltip(
+                `<div>
+                     Base: Representante 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_043916d4bce9c75c9c358ba44e1bc4d9.setIcon(icon_cce0da3513ba3207173e994f1a42af52);
+            
+    
+            var poly_line_fc61e49e0b29582f6066457c8e16efeb = L.polyline(
+                [[-23.516611369681865, -46.77588327771347], [-23.53344839135739, -46.637966854559416], [-23.56098497639982, -46.59063411342062], [-23.57002807976646, -46.53702364043265], [-23.5727633570995, -46.55750622618975], [-23.493778725742366, -46.7946785074838], [-23.516611369681865, -46.77588327771347]],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4daf4a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_fc61e49e0b29582f6066457c8e16efeb.bindTooltip(
+                `<div>
+                     Representante 3 | Distância: 56.5 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9fcb1cecbf0a903378b4a1b58f8c39f4 = L.marker(
+                [-23.516611369681865, -46.77588327771347],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_6b8c033e307239e7f6b9bec8a785eb11 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1fba2bc242b065e9e38dcf72da034433 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_4910bee759f198cd6afcaaa762bf65fd = $(`<div id="html_4910bee759f198cd6afcaaa762bf65fd" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 3</b><br>Distância total: <b>56.5 km</b></div>`)[0];
+                popup_1fba2bc242b065e9e38dcf72da034433.setContent(html_4910bee759f198cd6afcaaa762bf65fd);
+            
+        
+
+        marker_9fcb1cecbf0a903378b4a1b58f8c39f4.bindPopup(popup_1fba2bc242b065e9e38dcf72da034433)
+        ;
+
+        
+    
+    
+            marker_9fcb1cecbf0a903378b4a1b58f8c39f4.bindTooltip(
+                `<div>
+                     Base: Representante 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9fcb1cecbf0a903378b4a1b58f8c39f4.setIcon(icon_6b8c033e307239e7f6b9bec8a785eb11);
+            
+    
+            var poly_line_8f67f147f83e3022a6ec2f0a7f1e7874 = L.polyline(
+                [[-23.57097594170907, -46.69363880835805], [-23.517075775704043, -46.62362435683678], [-23.507617555755544, -46.59445681267806], [-23.575698104110483, -46.701137039762074], [-23.627776391221193, -46.661963858968235], [-23.517378365138814, -46.58982168672807], [-23.57097594170907, -46.69363880835805]],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#984ea3", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_8f67f147f83e3022a6ec2f0a7f1e7874.bindTooltip(
+                `<div>
+                     Representante 4 | Distância: 59.2 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_aee5b92b15d16b150dc981e77f6f3529 = L.marker(
+                [-23.57097594170907, -46.69363880835805],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_353e8e4f011c69f82ad3e114a8424658 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fac14f140476753dd463b2971e197125 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_9cbe0c19a472b784486360a366cf3eb4 = $(`<div id="html_9cbe0c19a472b784486360a366cf3eb4" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 4</b><br>Distância total: <b>59.2 km</b></div>`)[0];
+                popup_fac14f140476753dd463b2971e197125.setContent(html_9cbe0c19a472b784486360a366cf3eb4);
+            
+        
+
+        marker_aee5b92b15d16b150dc981e77f6f3529.bindPopup(popup_fac14f140476753dd463b2971e197125)
+        ;
+
+        
+    
+    
+            marker_aee5b92b15d16b150dc981e77f6f3529.bindTooltip(
+                `<div>
+                     Base: Representante 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_aee5b92b15d16b150dc981e77f6f3529.setIcon(icon_353e8e4f011c69f82ad3e114a8424658);
+            
+    
+            var poly_line_b8cf206d099beefc52779e92952750af = L.polyline(
+                [[-23.546231617015493, -46.56756177284519], [-23.541814710527763, -46.6379506139348], [-23.576032097677114, -46.732052124875], [-23.562228989409267, -46.66993098829607], [-23.533615874733638, -46.61670776433825], [-23.540670187317247, -46.61881019751473], [-23.546231617015493, -46.56756177284519]],
+                {"bubblingMouseEvents": true, "color": "#ff7f00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ff7f00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_b8cf206d099beefc52779e92952750af.bindTooltip(
+                `<div>
+                     Representante 5 | Distância: 36.4 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a2cc1d2f69f4563d57743478007d7646 = L.marker(
+                [-23.546231617015493, -46.56756177284519],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_5864af7ae61a37aa90599f1ae8730cc9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fe36f32845c37f7a89871953195aa91c = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_0bac8a586b947e32faac6b4ad8634766 = $(`<div id="html_0bac8a586b947e32faac6b4ad8634766" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 5</b><br>Distância total: <b>36.4 km</b></div>`)[0];
+                popup_fe36f32845c37f7a89871953195aa91c.setContent(html_0bac8a586b947e32faac6b4ad8634766);
+            
+        
+
+        marker_a2cc1d2f69f4563d57743478007d7646.bindPopup(popup_fe36f32845c37f7a89871953195aa91c)
+        ;
+
+        
+    
+    
+            marker_a2cc1d2f69f4563d57743478007d7646.bindTooltip(
+                `<div>
+                     Base: Representante 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a2cc1d2f69f4563d57743478007d7646.setIcon(icon_5864af7ae61a37aa90599f1ae8730cc9);
+            
+    
+            var poly_line_e9fe3d3b192a2638da56b43b2104663e = L.polyline(
+                [[-23.560415589601895, -46.67171654302939], [-23.534075523070335, -46.68612843184658], [-23.46418050882638, -46.658763534649225], [-23.55829447284885, -46.77468644525941], [-23.573845988115263, -46.610928569359004], [-23.53623078676109, -46.56792488343361], [-23.560415589601895, -46.67171654302939]],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#a65628", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_e9fe3d3b192a2638da56b43b2104663e.bindTooltip(
+                `<div>
+                     Representante 6 | Distância: 61.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_27c0c523947fffd909094fd02243b145 = L.marker(
+                [-23.560415589601895, -46.67171654302939],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_fe05f0855e60e86acfed37083fc21717 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f90b409a5093d8ae0eb92b236ce5dc85 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_5109aa114b4840cfb90c02e0f06cd422 = $(`<div id="html_5109aa114b4840cfb90c02e0f06cd422" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 6</b><br>Distância total: <b>61.1 km</b></div>`)[0];
+                popup_f90b409a5093d8ae0eb92b236ce5dc85.setContent(html_5109aa114b4840cfb90c02e0f06cd422);
+            
+        
+
+        marker_27c0c523947fffd909094fd02243b145.bindPopup(popup_f90b409a5093d8ae0eb92b236ce5dc85)
+        ;
+
+        
+    
+    
+            marker_27c0c523947fffd909094fd02243b145.bindTooltip(
+                `<div>
+                     Base: Representante 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_27c0c523947fffd909094fd02243b145.setIcon(icon_fe05f0855e60e86acfed37083fc21717);
+            
+    
+            var poly_line_9e055bd05504e2d564d60d2f1a2a238b = L.polyline(
+                [[-23.584804978165696, -46.68181873415383], [-23.58588849882568, -46.6666927422204], [-23.59143935654672, -46.62146139906669], [-23.552058543113795, -46.701354958728], [-23.4313992831959, -46.5061729653314], [-23.677053427145573, -46.56641309404748], [-23.584804978165696, -46.68181873415383]],
+                {"bubblingMouseEvents": true, "color": "#f781bf", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f781bf", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_9e055bd05504e2d564d60d2f1a2a238b.bindTooltip(
+                `<div>
+                     Representante 7 | Distância: 83.0 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_7ebb777e226858ec5f79605157ef2462 = L.marker(
+                [-23.584804978165696, -46.68181873415383],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_32ce7a6f5fc153803ff804711ebb8008 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_34fc9992c0740ba10ff4b07831632b31 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_5738ac56d0eed1198c2143846469358e = $(`<div id="html_5738ac56d0eed1198c2143846469358e" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 7</b><br>Distância total: <b>83.0 km</b></div>`)[0];
+                popup_34fc9992c0740ba10ff4b07831632b31.setContent(html_5738ac56d0eed1198c2143846469358e);
+            
+        
+
+        marker_7ebb777e226858ec5f79605157ef2462.bindPopup(popup_34fc9992c0740ba10ff4b07831632b31)
+        ;
+
+        
+    
+    
+            marker_7ebb777e226858ec5f79605157ef2462.bindTooltip(
+                `<div>
+                     Base: Representante 7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7ebb777e226858ec5f79605157ef2462.setIcon(icon_32ce7a6f5fc153803ff804711ebb8008);
+            
+    
+            var poly_line_e797fdb2b30ecda45d3bd1e6917a6b5b = L.polyline(
+                [[-23.514134401400195, -46.63963485143621], [-23.548328972065672, -46.63341455444745], [-23.582815950562253, -46.702311305264544], [-23.539100122773316, -46.612144729098425], [-23.59909120452993, -46.6703702161923], [-23.61860902960875, -46.54567970679793], [-23.514134401400195, -46.63963485143621]],
+                {"bubblingMouseEvents": true, "color": "#555555", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#555555", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_e797fdb2b30ecda45d3bd1e6917a6b5b.bindTooltip(
+                `<div>
+                     Representante 8 | Distância: 59.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_972948c4bbc39317229e0c9d8fc376e5 = L.marker(
+                [-23.514134401400195, -46.63963485143621],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_70f079bcc3a5bd3375a91a9a6ab5a5f7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_204daabc2fff579a2f60e384a4caf146 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_15f6cc67efc98336ec62b676ea47afdf = $(`<div id="html_15f6cc67efc98336ec62b676ea47afdf" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 8</b><br>Distância total: <b>59.1 km</b></div>`)[0];
+                popup_204daabc2fff579a2f60e384a4caf146.setContent(html_15f6cc67efc98336ec62b676ea47afdf);
+            
+        
+
+        marker_972948c4bbc39317229e0c9d8fc376e5.bindPopup(popup_204daabc2fff579a2f60e384a4caf146)
+        ;
+
+        
+    
+    
+            marker_972948c4bbc39317229e0c9d8fc376e5.bindTooltip(
+                `<div>
+                     Base: Representante 8
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_972948c4bbc39317229e0c9d8fc376e5.setIcon(icon_70f079bcc3a5bd3375a91a9a6ab5a5f7);
+            
+    
+            var poly_line_f63f6f2bfc92ebc37b27a3ac2cb28538 = L.polyline(
+                [[-23.481557832458915, -46.62184283761362], [-23.577929454844522, -46.68440654166829], [-23.49545074979481, -46.563701713758086], [-23.64332156006549, -46.55514499782027], [-23.53051498420535, -46.58201672471464], [-23.661690694170073, -46.5553504224802], [-23.481557832458915, -46.62184283761362]],
+                {"bubblingMouseEvents": true, "color": "#66c2a5", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#66c2a5", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_f63f6f2bfc92ebc37b27a3ac2cb28538.bindTooltip(
+                `<div>
+                     Representante 9 | Distância: 93.1 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e77556aa09dd1a881b9e1f19e1f4835a = L.marker(
+                [-23.481557832458915, -46.62184283761362],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_bcdd24ca0ba9ff7605ad5430270ce3c9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6e3ca429ecea121e85a82a34bb206665 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_2a61494d400287715f49f1606c4fca08 = $(`<div id="html_2a61494d400287715f49f1606c4fca08" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 9</b><br>Distância total: <b>93.1 km</b></div>`)[0];
+                popup_6e3ca429ecea121e85a82a34bb206665.setContent(html_2a61494d400287715f49f1606c4fca08);
+            
+        
+
+        marker_e77556aa09dd1a881b9e1f19e1f4835a.bindPopup(popup_6e3ca429ecea121e85a82a34bb206665)
+        ;
+
+        
+    
+    
+            marker_e77556aa09dd1a881b9e1f19e1f4835a.bindTooltip(
+                `<div>
+                     Base: Representante 9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e77556aa09dd1a881b9e1f19e1f4835a.setIcon(icon_bcdd24ca0ba9ff7605ad5430270ce3c9);
+            
+    
+            var poly_line_b8f25434ccfebbf2f2dd5c9164bc5a37 = L.polyline(
+                [[-23.559832117935333, -46.592541138285355], [-23.586910705681177, -46.66974356381577], [-23.631907577502524, -46.657280301924594], [-23.582693877526523, -46.5576146429442], [-23.53522149513831, -46.64987228024305], [-23.661825269742245, -46.53625889968512], [-23.559832117935333, -46.592541138285355]],
+                {"bubblingMouseEvents": true, "color": "#fc8d62", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#fc8d62", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            poly_line_b8f25434ccfebbf2f2dd5c9164bc5a37.bindTooltip(
+                `<div>
+                     Representante 10 | Distância: 66.8 km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c8ad6aafc3cd47b5929067890157f14c = L.marker(
+                [-23.559832117935333, -46.592541138285355],
+                {
+}
+            ).addTo(map_9fe86431845aac23fc2703050a1d5127);
+        
+    
+            var icon_890f78e2fe91cc99c4949d47bac4939e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2849b0bdfc3e9d59bf5cb33f47a40fee = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_22e01d5a6263a31de55088c499516475 = $(`<div id="html_22e01d5a6263a31de55088c499516475" style="width: 100.0%; height: 100.0%;"><b>🏠 Base — Representante 10</b><br>Distância total: <b>66.8 km</b></div>`)[0];
+                popup_2849b0bdfc3e9d59bf5cb33f47a40fee.setContent(html_22e01d5a6263a31de55088c499516475);
+            
+        
+
+        marker_c8ad6aafc3cd47b5929067890157f14c.bindPopup(popup_2849b0bdfc3e9d59bf5cb33f47a40fee)
+        ;
+
+        
+    
+    
+            marker_c8ad6aafc3cd47b5929067890157f14c.bindTooltip(
+                `<div>
+                     Base: Representante 10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c8ad6aafc3cd47b5929067890157f14c.setIcon(icon_890f78e2fe91cc99c4949d47bac4939e);
+            
+</script>
+</html>
